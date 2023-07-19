@@ -1,71 +1,120 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
+import Link from '@mui/material/Link';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 import Title from './Title';
+import TransactionService from "../service/TransactionService.ts";
+import AccountService from "../service/AccountService.ts";
 
-// Generate Sales Data
-function createData(time: string, amount?: number) {
-    return { time, amount };
+function preventDefault(event: React.MouseEvent) {
+    event.preventDefault();
 }
 
-const data = [
-    createData('00:00', 0),
-    createData('03:00', 300),
-    createData('06:00', 600),
-    createData('09:00', 800),
-    createData('12:00', 1500),
-    createData('15:00', 2000),
-    createData('18:00', 2400),
-    createData('21:00', 2400),
-    createData('24:00', undefined),
-];
+interface Row {
+    transactionId: number;
+    actingId: number;
+    targetId: number;
+    amount: number;
+    status: string;
+    comment: string;
+}
 
 export default function Chart() {
-    const theme = useTheme();
+    const [rows, setRows] = React.useState<Row[]>([]);
+
+    React.useEffect(() => {
+        const accountIdString = localStorage.getItem("accountId");
+        if (accountIdString !== null) {
+            const accountId: number = parseInt(accountIdString);
+            if (!isNaN(accountId)) {
+                AccountService.getAccountByAccountID(accountId)
+                    .then(accountResponse => {
+                        const account = accountResponse.data;
+                        console.log("Account:", account); // Log the account data
+                        TransactionService.getPendingTransactions(account.accountId)
+                            .then(response => {
+                                console.log("Transactions:", response.data); // Log the transactions data
+                                setRows(response.data);
+                            })
+                            .catch(error => console.error(error));
+                    })
+                    .catch(error => console.error(error));
+            } else {
+                console.error("Account ID is not a number: ", accountIdString);
+            }
+        } else {
+            console.error("No account ID found in local storage.");
+        }
+    }, []);
+
+    const handleAcceptClick = (transactionId: number) => {
+        // Call the acceptTransaction API endpoint and handle success/failure
+        TransactionService.acceptTransaction(transactionId)
+            .then(response => {
+                console.log("Transaction accepted:", response.data);
+                // Handle success
+            })
+            .catch(error => {
+                console.error("Error accepting transaction:", error);
+                // Handle error
+            });
+    };
+
+    const handleRejectClick = (transactionId: number) => {
+        // Call the rejectTransaction API endpoint and handle success/failure
+        TransactionService.rejectTransaction(transactionId)
+            .then(response => {
+                console.log("Transaction rejected:", response.data);
+                // Handle success
+            })
+            .catch(error => {
+                console.error("Error rejecting transaction:", error);
+                // Handle error
+            });
+    };
 
     return (
         <React.Fragment>
-            <Title>Today</Title>
-            <ResponsiveContainer>
-                <LineChart
-                    data={data}
-                    margin={{
-                        top: 16,
-                        right: 16,
-                        bottom: 0,
-                        left: 24,
-                    }}
-                >
-                    <XAxis
-                        dataKey="time"
-                        stroke={theme.palette.text.secondary}
-                        style={theme.typography.body2}
-                    />
-                    <YAxis
-                        stroke={theme.palette.text.secondary}
-                        style={theme.typography.body2}
-                    >
-                        <Label
-                            angle={270}
-                            position="left"
-                            style={{
-                                textAnchor: 'middle',
-                                fill: theme.palette.text.primary,
-                                ...theme.typography.body1,
-                            }}
-                        >
-                            Sales ($)
-                        </Label>
-                    </YAxis>
-                    <Line
-                        isAnimationActive={false}
-                        type="monotone"
-                        dataKey="amount"
-                        stroke={theme.palette.primary.main}
-                        dot={false}
-                    />
-                </LineChart>
-            </ResponsiveContainer>
+            <Title>Transaction Requests</Title>
+            <Table size="small">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Transaction ID</TableCell>
+                        <TableCell>Acting ID</TableCell>
+                        <TableCell>Target ID</TableCell>
+                        <TableCell align="right">Amount</TableCell>
+                        <TableCell>Status</TableCell>
+                        <TableCell>Comment</TableCell>
+                        <TableCell>Action</TableCell> {/* New column for buttons */}
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {rows.map((row) => (
+                        <TableRow key={row.transactionId}>
+                            <TableCell>{row.transactionId}</TableCell>
+                            <TableCell>{row.actingId}</TableCell>
+                            <TableCell>{row.targetId}</TableCell>
+                            <TableCell align="right">{`$${row.amount}`}</TableCell>
+                            <TableCell>{row.status}</TableCell>
+                            <TableCell>{row.comment}</TableCell>
+                            <TableCell>
+                                {row.status === 'Pending' && ( // Show buttons only for pending transactions
+                                    <>
+                                        <button onClick={() => handleAcceptClick(row.transactionId)}>Accept</button>
+                                        <button onClick={() => handleRejectClick(row.transactionId)}>Reject</button>
+                                    </>
+                                )}
+                            </TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
+            <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
+                See more orders
+            </Link>
         </React.Fragment>
     );
 }

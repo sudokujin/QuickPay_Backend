@@ -27,5 +27,13 @@ export default {
 
     getAllTransactions(accountId: number) {
         return http.get(`/transaction/${accountId}`);
+    },
+
+    getPendingTransactions(accountId: number) {
+        return http.get(`/transaction/pending/${accountId}`);
+    },
+
+    getNotPendingTransactions(accountId: number) {
+        return http.get(`/transaction/notpending/${accountId}`);
     }
 }

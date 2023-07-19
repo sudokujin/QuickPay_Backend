@@ -11,6 +11,10 @@ public interface TransactionDao {
 
     List<Transaction> listAllTransactions(Integer accountId);
 
+    List<Transaction> listTransactionsPending(Integer accountId);
+
+    List<Transaction> listTransactionsNotPending(Integer accountId);
+
     Transaction getTransactionByTransactionId(Integer transactionId);
     void createTransaction(Transaction transaction);
     void updateTransactionStatus(int transactionId, String status);

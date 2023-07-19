@@ -34,7 +34,7 @@ export default function Orders() {
                     .then(accountResponse => {
                         const account = accountResponse.data;
                         console.log("Account:", account); // Log the account data
-                        TransactionService.getAllTransactions(account.accountId)
+                        TransactionService.getNotPendingTransactions(account.accountId)
                             .then(response => {
                                 console.log("Transactions:", response.data); // Log the transactions data
                                 setRows(response.data);

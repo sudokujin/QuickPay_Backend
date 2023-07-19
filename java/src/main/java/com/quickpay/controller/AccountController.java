@@ -5,6 +5,7 @@ import com.quickpay.model.Account;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.PermitAll;
+import java.math.BigDecimal;
 
 @PermitAll
 @CrossOrigin
@@ -35,9 +36,9 @@ public class AccountController {
         accountDao.createAccount(account);
     }
 
-    @PutMapping
-    public void updateBalance(@RequestBody Account account) {
-        accountDao.updateBalance(account.getBalance(), account.getAccountId());
+    @PutMapping("/{accountId}")
+    public void updateBalance(@RequestBody BigDecimal balance, @PathVariable Integer accountId) {
+        accountDao.updateBalance(balance, accountId);
     }
 
     @DeleteMapping

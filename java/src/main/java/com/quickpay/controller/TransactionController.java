@@ -1,6 +1,7 @@
 package com.quickpay.controller;
 
 import com.quickpay.dao.TransactionDao;
+import com.quickpay.model.Account;
 import com.quickpay.model.Transaction;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,16 @@ public class TransactionController {
     @GetMapping("/{accountId}")
     public List<Transaction> listAllTransactions(@PathVariable Integer accountId) {
         return transactionDao.listAllTransactions(accountId);
+    }
+
+    @GetMapping("/pending/{accountId}")
+    public List<Transaction> listTransactionsPending(@PathVariable Integer accountId) {
+        return transactionDao.listTransactionsPending(accountId);
+    }
+
+    @GetMapping("/notpending/{accountId}")
+    public List<Transaction> listTransactionsNotPending(@PathVariable Integer accountId) {
+        return transactionDao.listTransactionsNotPending(accountId);
     }
 
     @PostMapping

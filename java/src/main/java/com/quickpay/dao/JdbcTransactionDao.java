@@ -24,7 +24,7 @@ public class JdbcTransactionDao implements TransactionDao {
         List<Transaction> transactions = new ArrayList<>();
         String sql = "SELECT * FROM transactions WHERE type_id = 2 AND (acting_id = ? OR target_id = ?);";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId, accountId);
-        while (result.next()){
+        while (result.next()) {
             Transaction transaction = mapRowToTransaction(result);
             transactions.add(transaction);
         }
@@ -35,6 +35,28 @@ public class JdbcTransactionDao implements TransactionDao {
     public List<Transaction> listAllTransactions(Integer accountId) {
         List<Transaction> transactions = new ArrayList<>();
         String sql = "SELECT * FROM transactions WHERE acting_id = ? OR target_id = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId, accountId);
+        while(result.next()) {
+            transactions.add(mapRowToTransaction(result));
+        }
+        return transactions;
+    }
+
+    @Override
+    public List<Transaction> listTransactionsPending(Integer accountId) {
+        List<Transaction> transactions = new ArrayList<>();
+        String sql = "SELECT * FROM transactions WHERE (acting_id = ? OR target_id = ?) AND status = 'Pending';";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId, accountId);
+        while(result.next()) {
+            transactions.add(mapRowToTransaction(result));
+        }
+        return transactions;
+    }
+
+    @Override
+    public List<Transaction> listTransactionsNotPending(Integer accountId) {
+        List<Transaction> transactions = new ArrayList<>();
+        String sql = "SELECT * FROM transactions WHERE (acting_id = ? OR target_id = ?) AND status != 'Pending';";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId, accountId);
         while(result.next()) {
             transactions.add(mapRowToTransaction(result));

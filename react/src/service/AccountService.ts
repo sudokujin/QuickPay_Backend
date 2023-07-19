@@ -1,39 +1,45 @@
 import axios from 'axios';
 
 const http = axios.create({
-    baseURL:"http://localhost:9000"
+    baseURL: 'http://localhost:9000',
 });
 
-http.interceptors.request.use((config) => {
-    const token = localStorage.getItem('jwtToken');
+http.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem('jwtToken');
 
-    if (token) {
-        config.headers['Authorization'] = `Bearer ${token}`;
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+
+        // Set the content type header to 'application/json'
+        config.headers['Content-Type'] = 'application/json';
+
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
     }
-
-    return config;
-}, (error) => {
-    return Promise.reject(error);
-});
+);
 
 export default {
-    createAccount(account : any) {
+    createAccount(account) {
         return http.post('/account', account);
     },
 
-    updateBalance(account : any) {
-        return http.put('/account', account);
+    updateBalance(balance : number, accountId : number) {
+        return http.put(`/account/${accountId}`, balance, accountId);
     },
 
-    getAccountByAccountID(accountId : number) {
+    getAccountByAccountID(accountId) {
         return http.get(`/account/${accountId}`);
     },
 
-    getAccountByUserID(userId: number) {
+    getAccountByUserID(userId) {
         return http.get(`/account/user/${userId}`);
     },
 
-    deleteAccount(account: any) {
+    deleteAccount(account) {
         return http.delete('/account', account);
-    }
-}
+    },
+};
