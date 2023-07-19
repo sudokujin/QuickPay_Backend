@@ -19,6 +19,7 @@ public class AccountController {
         this.accountDao = accountDao;
     }
 
+
     @PermitAll
     @GetMapping("/{accountId}")
     public Account getAccountByAccountId(@PathVariable Integer accountId) {
