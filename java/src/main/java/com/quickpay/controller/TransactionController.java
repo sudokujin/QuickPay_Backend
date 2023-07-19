@@ -5,6 +5,7 @@ import com.quickpay.model.Transaction;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/transaction")
@@ -16,9 +17,9 @@ public class TransactionController {
     }
 
 
-    @GetMapping
-    public List<Transaction> listAllTransactions() {
-        return transactionDao.listAllTransactions();
+    @GetMapping("/{accountId}")
+    public List<Transaction> listAllTransactions(@PathVariable Integer accountId) {
+        return transactionDao.listAllTransactions(accountId);
     }
 
     @PostMapping

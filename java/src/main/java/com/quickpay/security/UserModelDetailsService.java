@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,7 +33,11 @@ public class UserModelDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(final String login) {
         log.debug("Authenticating user '{}'", login);
         String lowercaseLogin = login.toLowerCase();
-        return createSpringSecurityUser(lowercaseLogin, userDao.findByUsername(lowercaseLogin));
+        try {
+            return createSpringSecurityUser(lowercaseLogin, userDao.findByUsername(lowercaseLogin));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private org.springframework.security.core.userdetails.User createSpringSecurityUser(String lowercaseLogin, User user) {
@@ -47,4 +52,3 @@ public class UserModelDetailsService implements UserDetailsService {
                 grantedAuthorities);
     }
 }
-

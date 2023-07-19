@@ -16,4 +16,6 @@ public interface FriendRequestDao {
     String getFriendRequestStatus(Integer accountId, Integer friendId);
 
     List<FriendRequest> getFriendRequestsByAccountId(Integer accountId);
+
+    List<FriendRequest> getAllFriendRequests(Integer accountId);
 }

@@ -1,7 +1,11 @@
 package com.quickpay.controller;
 
 import com.quickpay.dao.FriendRequestDao;
+import com.quickpay.model.FriendRequest;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/friendrequest")
@@ -36,5 +40,10 @@ public class FriendRequestController {
     @GetMapping
     public String getFriendRequestStatus(Integer accountId, Integer friendId) {
         return friendRequestDao.getFriendRequestStatus(accountId, friendId);
+    }
+
+    @GetMapping("/{accountId}")
+    public List<FriendRequest> getAllFriendRequests(@PathVariable Integer accountId) {
+        return friendRequestDao.getAllFriendRequests(accountId);
     }
 }

@@ -14,12 +14,17 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.annotation.security.PermitAll;
 import javax.validation.Valid;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
 @CrossOrigin
 @RestController
 public class AuthenticationController {
@@ -35,13 +40,44 @@ public class AuthenticationController {
         this.userDao = userDao;
     }
 
-    @PermitAll
     @GetMapping("/user/{username}")
-    public User getUserByUsername(@PathVariable String username) {
+    public User getUserByUsername(@PathVariable String username) throws SQLException {
         return userDao.findByUsername(username);
     }
+
+    @GetMapping("/user/id")
+    public ResponseEntity<Map<String, Integer>> getUserId() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(principal);
+
+        if (principal instanceof org.springframework.security.core.userdetails.User) {
+            String username = ((org.springframework.security.core.userdetails.User) principal).getUsername();
+            int id = userDao.findIdByUsername(username);
+            Map<String, Integer> map = new HashMap<>();
+            map.put("id", id);
+            return ResponseEntity.ok(map);
+        }
+
+        Map<String, Integer> errorMap = new HashMap<>();
+        errorMap.put("id", -1);
+        return ResponseEntity.ok(errorMap);
+    }
+
+
+    @GetMapping("/user")
+    public User getUser() throws SQLException {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof User) {
+            String username = ((UserDetails) principal).getUsername();
+            return userDao.findByUsername(username);
+        }
+
+        return null;
+    }
+
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDto> login(@Valid @RequestBody LoginDto loginDto) {
+    public ResponseEntity<LoginResponseDto> login(@Valid @RequestBody LoginDto loginDto) throws SQLException {
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
 
@@ -56,15 +92,20 @@ public class AuthenticationController {
         return new ResponseEntity<>(new LoginResponseDto(jwt, user), httpHeaders, HttpStatus.OK);
     }
 
+    @PermitAll
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/register")
-    public void register(@Valid @RequestBody RegisterUserDto newUser) {
+    public void register(@Valid @RequestBody RegisterUserDto newUser) throws SQLException {
         try {
             User user = userDao.findByUsername(newUser.getUsername());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User Already Exists.");
         } catch (UsernameNotFoundException e) {
-            userDao.create(newUser.getUsername(),newUser.getPassword(), newUser.getRole());
+            User user = new User(newUser.getUsername(), newUser.getPassword(),
+                    "USER", newUser.getEmail(), newUser.getBirthDate(), newUser.getFirstName(), newUser.getLastName(),
+                    newUser.getPhoneNumber(), newUser.getAddress(), newUser.getCity(), newUser.getState(), newUser.getZipCode());
+
+            user.setAuthorities("USER");
+            userDao.create(user);
         }
     }
 }
-

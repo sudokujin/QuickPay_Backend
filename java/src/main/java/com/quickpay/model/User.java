@@ -35,15 +35,15 @@ public class User {
     @NotNull
     private String city;
     @NotNull
-    private String states;
+    private String state;
     @NotNull
-    private String zipcode;
+    private String zipCode;
 
     public User() { }
 
-    public User(int id, String username, String password, int accountId, String authorities, String email,
+    public User(String username, String password, String authorities, String email,
                 LocalDate birthdate, String firstName, String lastName, String phoneNumber, String address, String city,
-                String states, String zipcode) {
+                String state, String zipCode) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -51,6 +51,14 @@ public class User {
         this.activated = true;
         this.accountId = accountId;
         this.email = email;
+        this.lastName = lastName;
+        this.birthdate = birthdate;
+        this.firstName = firstName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
     }
 
     public int getId() {
@@ -136,20 +144,20 @@ public class User {
         this.email = email;
     }
 
-    public String getZipcode() {
-        return zipcode;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
-    public String getStates() {
-        return states;
+    public String getState() {
+        return state;
     }
 
-    public void setStates(String states) {
-        this.states = states;
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getCity() {

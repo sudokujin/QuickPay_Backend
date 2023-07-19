@@ -6,6 +6,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import javax.sql.RowSet;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 
@@ -30,6 +31,8 @@ public class JdbcAccountDao implements AccountDao {
         return balance;
     }
 
+
+
 //    @Override
 //    public Account getAccountByUserId(int userId) {
 //        Account account = null;
@@ -43,7 +46,7 @@ public class JdbcAccountDao implements AccountDao {
 //    }
 
     @Override
-    public Account getAccountByAccountId(int accountId) {
+    public Account getAccountByAccountId(Integer accountId) {
         Account account = null;
 
         String sql = "SELECT * FROM account WHERE account_id = ?";
@@ -72,6 +75,19 @@ public class JdbcAccountDao implements AccountDao {
         jdbcTemplate.update(sql, accountId);
     }
 
+    @Override
+    public Account getAccountByUserId(Integer userId) {
+        String sql = "SELECT a.*\n" +
+                "FROM account AS a\n" +
+                "JOIN users AS u ON a.account_id = u.account_id\n" +
+                "WHERE u.user_id = ?";
+        SqlRowSet rowSet = jdbcTemplate.queryForRowSet(sql, userId);
+        if (rowSet.next()) {
+            return mapRowToAccount(rowSet);
+        }
+        return null;
+    }
+
     private Account mapRowToAccount(SqlRowSet rowSet) {
         Account account = new Account();
         account.setAccountId(rowSet.getInt("account_id"));
@@ -80,3 +96,4 @@ public class JdbcAccountDao implements AccountDao {
         return account;
     }
 }
+

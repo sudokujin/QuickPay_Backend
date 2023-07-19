@@ -32,10 +32,10 @@ public class JdbcTransactionDao implements TransactionDao {
     }
 
     @Override
-    public List<Transaction> listAllTransactions() {
+    public List<Transaction> listAllTransactions(Integer accountId) {
         List<Transaction> transactions = new ArrayList<>();
-        String sql = "SELECT * FROM transactions;";
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
+        String sql = "SELECT * FROM transactions WHERE acting_id = ? OR target_id = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId, accountId);
         while(result.next()) {
             transactions.add(mapRowToTransaction(result));
         }
@@ -82,11 +82,11 @@ public class JdbcTransactionDao implements TransactionDao {
 
     private Transaction mapRowToTransaction(SqlRowSet rowSet) {
         Transaction transaction = new Transaction();
-        transaction.setTransactionId(rowSet.getInt("transfer_id"));
-        transaction.setTypeId(rowSet.getInt("transfer_type_id"));
-        transaction.setStatus(rowSet.getString("transfer_status"));
-        transaction.setActingId(rowSet.getInt("account_from"));
-        transaction.setTargetId(rowSet.getInt("account_to"));
+        transaction.setTransactionId(rowSet.getInt("transaction_id"));
+        transaction.setStatus(rowSet.getString("status"));
+        transaction.setActingId(rowSet.getInt("acting_id"));
+        transaction.setTargetId(rowSet.getInt("target_id"));
+        transaction.setTypeId(rowSet.getInt("type_id"));
         transaction.setAmount(rowSet.getBigDecimal("amount"));
         Timestamp timestamp = rowSet.getTimestamp("date_time");
         OffsetDateTime offsetDateTime = OffsetDateTime.ofInstant(timestamp.toInstant(), ZoneOffset.UTC);

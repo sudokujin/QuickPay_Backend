@@ -15,25 +15,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import AuthService from "../service/AuthService.ts";
+import AccountService from "../service/AccountService.ts";
+import {isNumber} from "recharts/types/util/DataUtils";
 
-function Copyright(props: any) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright Â© '}
-            <Link color="inherit" href="https://mui.com/">
-                Quickpay
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
-const defaultTheme = createTheme();
-
-export default function SignIn() {
+function SignIn() {
     const navigate = useNavigate();
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         const username = data.get('username');
@@ -41,23 +29,47 @@ export default function SignIn() {
 
         try {
             let user = {
-                username: username as string,
-                password: password as string,
+                username: username,
+                password: password,
             };
-            const response : any = await AuthService.login(user);
+            const response = await AuthService.login(user);
             const { token } = response.data;
             localStorage.setItem('jwtToken', token);
+
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+
+            const userResponse = await AuthService.getUserId();
+            const { id } = userResponse.data;
+            console.log(userResponse);
+            localStorage.setItem('userId', id);
+            console.log("Id is number: " + (typeof id === "number"));
+            console.log("id: " + id);
+            console.log("userId: " + localStorage.getItem('userId'));
+
+            const accountResponse = await AccountService.getAccountByUserID(parseInt(id));
+            console.log("accountResponse:", accountResponse);
+
+            const account = {
+                accountId: parseInt(accountResponse.data?.accountId),
+                balance: parseFloat(accountResponse.data?.balance)
+            };
+
+            localStorage.setItem('account', JSON.stringify(account));
+            localStorage.setItem('accountId', account.accountId.toString());
+            localStorage.setItem('balance', account.balance.toString());
+            console.log("account: ", JSON.parse(localStorage.getItem('account') || ''));
+            console.log("accountId: " + account.accountId);
+            console.log("accountBalance: " + account.balance);
+
             navigate('/dashboard'); // Redirect to the dashboard page
         } catch (error) {
             // Handle error
-            console.log(
-                "error"
-            );
+            console.log("error", error);
         }
     };
 
     return (
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={createTheme()}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -75,28 +87,32 @@ export default function SignIn() {
                         Sign in
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                        <TextField
-                            margin="normal"
-                            helperText="Enter your username"
-                            required
-                            fullWidth
-                            id="username"
-                            label="Username"
-                            name="username"
-                            autoComplete="username"
-                            autoFocus
-                        />
-                        <TextField
-                            margin="normal"
-                            helperText="Enter your password"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                        />
+                        <Box sx={{ backgroundColor: '#EFD469' }}>
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                helperText = "Enter your username"
+                                id="username"
+                                label="Username"
+                                name="username"
+                                autoComplete="username"
+                                autoFocus
+                                InputProps={{ sx: { backgroundColor: 'white' } }}
+                            />
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                helperText = "Enter your password"
+                                name="password"
+                                label="Password"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                                InputProps={{ sx: { backgroundColor: 'white' } }}
+                            />
+                        </Box>
 
                         <Button
                             type="submit"
@@ -127,8 +143,9 @@ export default function SignIn() {
                         </Grid>
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
             </Container>
         </ThemeProvider>
     );
 }
+
+export default SignIn;

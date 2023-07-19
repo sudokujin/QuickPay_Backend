@@ -5,6 +5,7 @@ import com.quickpay.model.Friends;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/friends")

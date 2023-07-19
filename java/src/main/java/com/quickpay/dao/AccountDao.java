@@ -7,13 +7,14 @@ import java.sql.SQLException;
 
 public interface AccountDao {
   //  Account getAccountByUserId(int userId);
+    Account getAccountByUserId(Integer userId);
     BigDecimal getBalance(int userId) throws SQLException;
 
-    Account getAccountByAccountId(int accountId);
+    Account getAccountByAccountId(Integer accountId);
 
     void updateBalance(BigDecimal balance, int accountId);
 
-  void createAccount(Account account);
+    void createAccount(Account account);
 
-  void deleteAccount(int accountId);
+    void deleteAccount(int accountId);
 }

@@ -9,8 +9,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class JdbcUserDao implements UserDao{
@@ -45,7 +48,7 @@ public class JdbcUserDao implements UserDao{
     }
 
     @Override
-    public User getUserById(int userId) {
+    public User getUserById(int userId) throws SQLException {
         String sql = "SELECT user_id, username, password_hash FROM users WHERE user_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
         if (results.next()) {
@@ -56,7 +59,7 @@ public class JdbcUserDao implements UserDao{
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User> findAll() throws SQLException {
         List<User> users = new ArrayList<>();
         String sql = "SELECT user_id, username, password_hash FROM users";
 
@@ -70,7 +73,7 @@ public class JdbcUserDao implements UserDao{
     }
 
     @Override
-    public User findByUsername(String username) {
+    public User findByUsername(String username) throws SQLException {
         if (username == null) throw new IllegalArgumentException("Username cannot be null");
 
         String sql = "SELECT * FROM users WHERE username = ?;";
@@ -89,10 +92,15 @@ public class JdbcUserDao implements UserDao{
                 " last_name, phone_number, address, city, state, zipcode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) " +
                 "RETURNING user_id";
         String password_hash = new BCryptPasswordEncoder().encode(user.getPassword());
-        Integer newUserId;
-        newUserId = jdbcTemplate.queryForObject(sql, Integer.class, user.getUsername(), password_hash, user.getAuthorities(),
-                user.getAccountId(), user.getEmail(), user.getBirthdate(), user.getFirstName(), user.getLastName(),
-                user.getPhoneNumber(), user.getAddress(), user.getCity(), user.getStates(), user.getZipcode());
+
+
+
+        String updateAccountSql = "UPDATE users SET account_id = ? WHERE user_id = ?;";
+
+        Integer newUserId = jdbcTemplate.queryForObject(sql, Integer.class, user.getUsername(),
+                password_hash, "ROLE_USER", 1, user.getEmail(), user.getBirthdate(),
+                user.getFirstName(), user.getLastName(), user.getPhoneNumber(), user.getAddress(), user.getCity(),
+                user.getState(), user.getZipCode());
 
         if (newUserId == null) return false;
 
@@ -100,6 +108,7 @@ public class JdbcUserDao implements UserDao{
         sql = "INSERT INTO account (account_id, balance) values(?, ?)";
         try {
             jdbcTemplate.update(sql, newUserId, 0);
+            jdbcTemplate.update(updateAccountSql, newUserId, newUserId);
         } catch (DataAccessException e) {
             return false;
         }
@@ -107,7 +116,9 @@ public class JdbcUserDao implements UserDao{
         return true;
     }
 
-    private User mapRowToUser(SqlRowSet rs) {
+
+
+    private User mapRowToUser(SqlRowSet rs) throws SQLException {
         User user = new User();
         user.setId(rs.getInt("user_id"));
         user.setUsername(rs.getString("username"));
@@ -120,9 +131,15 @@ public class JdbcUserDao implements UserDao{
             user.setAccountId(rs.getInt("account_id"));
             user.setAddress(rs.getString("address"));
             user.setCity(rs.getString("city"));
-            user.setStates(rs.getString("state"));
-            user.setZipcode(rs.getString("zipcode"));
+            user.setState(rs.getString("state"));
+            user.setZipCode(rs.getString("zipcode"));
             user.setPhoneNumber(rs.getString("phone_number"));
+
+            Date birthDate = rs.getDate("birth_date");
+            if (birthDate != null) {
+                user.setBirthdate(birthDate.toLocalDate());
+            }
+
             user.setFirstName(rs.getString("first_name"));
             user.setLastName(rs.getString("last_name"));
             user.setEmail(rs.getString("email"));
@@ -131,4 +148,5 @@ public class JdbcUserDao implements UserDao{
 
         return user;
     }
+
 }

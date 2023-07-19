@@ -13,11 +13,12 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import authService from "../service/AuthService.ts";
+import {useState} from "react";
 
 function Copyright(props: any) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
+            {'Copyright Â© '}
             <Link color="inherit" href="https://mui.com/">
                 Quickpay
             </Link>{' '}
@@ -34,32 +35,37 @@ const defaultTheme = createTheme();
 
 
 export default function SignUp() {
-    let user: {
-        username: string;
-        password: string;
-        firstName: string;
-        lastName: string;
-        phoneNumber: string;
-        address: string;
-        city: string;
-        birthDate: Date;
-        email: string;
-        states: string
-        zipcode: number;
+    const [user, setUser] = useState({
+        username: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        address: '',
+        city: '',
+        birthDate: '',
+        email: '',
+        state: '',
+        zipCode: '',
+    });
+
+    const handleChange = (event) => {
+        setUser((prevUser) => ({
+            ...prevUser,
+            [event.target.name]: event.target.value,
+        }));
     };
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        authService.register(this.user)
-            .then((response) => {
-                if (response.status == 201) {
-                    this.user = response.data;
-                }
-            })
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        try {
+            const response = await authService.register(user);
+            if (response.status === 201) {
+                setUser(response.data);
+            }
+        } catch (error) {
+            console.log('Registration failed:', error);
+        }
     };
 
     return (
@@ -82,29 +88,6 @@ export default function SignUp() {
                     </Typography>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    autoComplete="given-name"
-                                    helperText="Please enter your name"
-                                    name="firstName"
-                                    required
-                                    fullWidth
-                                    id="firstName"
-                                    label="First Name"
-                                    autoFocus
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    helperText=" "
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="family-name"
-                                />
-                            </Grid>
                             <Grid item xs={12}>
                                 <TextField
                                     required
@@ -113,16 +96,8 @@ export default function SignUp() {
                                     label="Username"
                                     name="username"
                                     autoComplete="username"
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="email"
-                                    label="Email Address"
-                                    name="email"
-                                    autoComplete="email"
+                                    value={user.username}
+                                    onChange={handleChange}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -134,26 +109,71 @@ export default function SignUp() {
                                     type="password"
                                     id="password"
                                     autoComplete="new-password"
+                                    value={user.password}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    autoComplete="given-name"
+                                    helperText="Please enter your name"
+                                    name="firstName"
+                                    required
+                                    fullWidth
+                                    id="firstName"
+                                    label="First Name"
+                                    autoFocus
+                                    value={user.firstName}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    helperText=" "
+                                    id="lastName"
+                                    label="Last Name"
+                                    name="lastName"
+                                    autoComplete="family-name"
+                                    value={user.lastName}
+                                    onChange={handleChange}
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
                                     required
                                     fullWidth
-                                    id="birth_date"
+                                    id="email"
+                                    label="Email Address"
+                                    name="email"
+                                    autoComplete="email"
+                                    value={user.email}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    required
+                                    fullWidth
+                                    id="birthDate"
                                     label="Birth Date"
-                                    name="birth_date"
+                                    name="birthDate"
                                     autoComplete=""
+                                    value={user.birthDate}
+                                    onChange={handleChange}
                                 />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
                                     required
                                     fullWidth
-                                    id="phone_number"
+                                    id="phoneNumber"
                                     label="Phone Number"
-                                    name="phone_number"
+                                    name="phoneNumber"
                                     autoComplete=""
+                                    value={user.phoneNumber}
+                                    onChange={handleChange}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -164,6 +184,8 @@ export default function SignUp() {
                                     label="Address"
                                     name="address"
                                     autoComplete=""
+                                    value={user.address}
+                                    onChange={handleChange}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={4}>
@@ -175,6 +197,8 @@ export default function SignUp() {
                                     id="city"
                                     label="City"
                                     autoFocus
+                                    value={user.city}
+                                    onChange={handleChange}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={4}>
@@ -186,6 +210,8 @@ export default function SignUp() {
                                     label="State"
                                     name="state"
                                     autoComplete=""
+                                    value={user.state}
+                                    onChange={handleChange}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={4}>
@@ -193,19 +219,16 @@ export default function SignUp() {
                                     required
                                     fullWidth
                                     helperText=" "
-                                    id="zipcode"
+                                    id="zipCode"
                                     label="Zipcode"
-                                    name="zipcode"
+                                    name="zipCode"
                                     autoComplete=""
+                                    value={user.zipCode}
+                                    onChange={handleChange}
                                 />
                             </Grid>
                         </Grid>
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
+                        <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                             Sign Up
                         </Button>
                         <Grid container justifyContent="center">
@@ -222,7 +245,9 @@ export default function SignUp() {
                         </Grid>
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 5 }} />
+                <Box mt={5}>
+                    <Copyright />
+                </Box>
             </Container>
         </ThemeProvider>
     );

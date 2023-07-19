@@ -68,6 +68,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
                 .and()
+                .authorizeRequests()
+                .antMatchers("/login", "/register").permitAll()
+                .anyRequest().permitAll()
+
+                .and()
                 .apply(securityConfigurerAdapter());
     }
 
@@ -75,4 +80,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new JWTConfigurer(tokenProvider);
     }
 }
+
 

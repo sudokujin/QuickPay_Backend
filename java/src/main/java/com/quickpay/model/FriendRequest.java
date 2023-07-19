@@ -6,6 +6,15 @@ public class FriendRequest {
     private int receiverId;
     private String status;
 
+    public FriendRequest() {
+    }
+
+    public FriendRequest(int senderId, int receiverId, String status) {
+        this.senderId = senderId;
+        this.receiverId = receiverId;
+        this.status = status;
+    }
+
     public int getId() {
         return id;
     }

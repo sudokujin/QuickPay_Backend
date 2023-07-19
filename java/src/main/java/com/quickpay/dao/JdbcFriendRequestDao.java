@@ -56,6 +56,18 @@ public class JdbcFriendRequestDao implements FriendRequestDao{
         return friendRequests;
     }
 
+    @Override
+    public List<FriendRequest> getAllFriendRequests(Integer accountId) {
+        String sql = "SELECT * FROM friend_request WHERE receiver_id = ? OR sender_id = ?;";
+        List<FriendRequest> friendRequests = new ArrayList<>();
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId, accountId);
+        while (result.next()){
+            FriendRequest friendRequest = mapRowToFriendRequest(result);
+            friendRequests.add(friendRequest);
+        }
+        return friendRequests;
+    }
+
 
     private FriendRequest mapRowToFriendRequest(SqlRowSet row) {
         FriendRequest friendRequest = new FriendRequest();

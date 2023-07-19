@@ -17,7 +17,7 @@ import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
@@ -25,9 +25,9 @@ import Orders from './Orders';
 function Copyright(props: any) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
+            {'Copyright Â© '}
             <Link color="inherit" href="https://mui.com/">
-                Your Website
+                Quickpay
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -148,8 +148,6 @@ export default function Dashboard() {
                     <Divider />
                     <List component="nav">
                         {mainListItems}
-                        <Divider sx={{ my: 1 }} />
-                        {secondaryListItems}
                     </List>
                 </Drawer>
                 <Box

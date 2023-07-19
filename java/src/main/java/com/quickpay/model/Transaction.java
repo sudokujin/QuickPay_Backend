@@ -21,9 +21,8 @@ public class Transaction {
     @NotNull
     private OffsetDateTime createdDateTime;
 
-//constructor
-
-    public Transaction(){}
+    public Transaction() {
+    }
 
     public Transaction(int actingId, int targetId, BigDecimal amount, String status, int typeId) {
         this.actingId = actingId;
@@ -32,10 +31,6 @@ public class Transaction {
         this.status = status;
         this.typeId = typeId;
     }
-    //getters and setters
-    public int getActingId() {
-        return actingId;
-    }
 
     public int getTransactionId() {
         return transactionId;
@@ -43,6 +38,10 @@ public class Transaction {
 
     public void setTransactionId(int transactionId) {
         this.transactionId = transactionId;
+    }
+
+    public int getActingId() {
+        return actingId;
     }
 
     public void setActingId(int actingId) {
@@ -65,22 +64,20 @@ public class Transaction {
         this.amount = amount;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public int getTypeId() {
         return typeId;
     }
 
     public void setTypeId(int typeId) {
         this.typeId = typeId;
-    }
-    @Override
-    public String toString() {
-        return "Transfer Details: \n\t" +
-                "transfer id: " + getTransactionId() +
-                "\n\ttransfer amount: " + getAmount() +
-                "\n\ttransfer status: " + getStatus() +
-                "\n\ttransfer type: " + getTypeId() +
-                "\n\ttransfer from: " + getActingId() +
-                "\n\ttransfer to: " + getTargetId();
     }
 
     public String getComment() {
@@ -99,11 +96,14 @@ public class Transaction {
         this.createdDateTime = createdDateTime;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    @Override
+    public String toString() {
+        return "Transfer Details: \n\t" +
+                "transfer id: " + getTransactionId() +
+                "\n\ttransfer amount: " + getAmount() +
+                "\n\ttransfer status: " + getStatus() +
+                "\n\ttransfer type: " + getTypeId() +
+                "\n\ttransfer from: " + getActingId() +
+                "\n\ttransfer to: " + getTargetId();
     }
 }
