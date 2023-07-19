@@ -10,7 +10,7 @@ public class RegisterUserDto {
 
     private String confirmPassword;
 
-    @NotEmpty(message = "Please select a role for this user.")
+    @NotEmpty(message = "Please select a role for this user..")
     private String role;
 
     public String getUsername() {
