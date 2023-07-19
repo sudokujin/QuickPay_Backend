@@ -1,0 +1,18 @@
+#body {
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    color: #EFD469;
+    background-color: #EFD469;
+}
+
+#root {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  color: #EFD469;
+  background-color: #EFD469;
+}

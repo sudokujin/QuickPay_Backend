@@ -1,0 +1,1214 @@
+12-07-2023 11:17:21.137 -05:00     DEBUG 5993 --- [background-preinit] org.jboss.logging                        : Logging Provider: org.jboss.logging.Log4j2LoggerProvider
+12-07-2023 11:17:21.138 -05:00      INFO 5993 --- [restartedMain] com.quickpay.QuickPayApplication         : Starting QuickPayApplication using Java 19.0.1 on Youngjins-MBP.lan with PID 5993 (/Users/kwon/Desktop/repo/QuickPay/java/target/classes started by kwon in /Users/kwon/Desktop/repo/QuickPay/java)
+12-07-2023 11:17:21.138 -05:00     DEBUG 5993 --- [restartedMain] com.quickpay.QuickPayApplication         : Running with Spring Boot v2.7.12, Spring v5.3.27
+12-07-2023 11:17:21.138 -05:00      INFO 5993 --- [restartedMain] com.quickpay.QuickPayApplication         : No active profile set, falling back to 1 default profile: "default"
+12-07-2023 11:17:21.991 -05:00      WARN 5993 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationController' defined in file [/Users/kwon/Desktop/repo/QuickPay/java/target/classes/com/quickpay/controller/AuthenticationController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'tokenProvider' defined in file [/Users/kwon/Desktop/repo/QuickPay/java/target/classes/com/quickpay/security/jwt/TokenProvider.class]: Invocation of init method failed; nested exception is io.jsonwebtoken.security.WeakKeyException: The specified key byte array is 152 bits which is not secure enough for any JWT HMAC-SHA algorithm.  The JWT JWA Specification (RFC 7518, Section 3.2) states that keys used with HMAC-SHA algorithms MUST have a size >= 256 bits (the key size must be greater than or equal to the hash output size).  Consider using the io.jsonwebtoken.security.Keys#secretKeyFor(SignatureAlgorithm) method to create a key guaranteed to be secure enough for your preferred HMAC-SHA algorithm.  See https://tools.ietf.org/html/rfc7518#section-3.2 for more information.
+12-07-2023 11:17:22.010 -05:00     ERROR 5993 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationController' defined in file [/Users/kwon/Desktop/repo/QuickPay/java/target/classes/com/quickpay/controller/AuthenticationController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'tokenProvider' defined in file [/Users/kwon/Desktop/repo/QuickPay/java/target/classes/com/quickpay/security/jwt/TokenProvider.class]: Invocation of init method failed; nested exception is io.jsonwebtoken.security.WeakKeyException: The specified key byte array is 152 bits which is not secure enough for any JWT HMAC-SHA algorithm.  The JWT JWA Specification (RFC 7518, Section 3.2) states that keys used with HMAC-SHA algorithms MUST have a size >= 256 bits (the key size must be greater than or equal to the hash output size).  Consider using the io.jsonwebtoken.security.Keys#secretKeyFor(SignatureAlgorithm) method to create a key guaranteed to be secure enough for your preferred HMAC-SHA algorithm.  See https://tools.ietf.org/html/rfc7518#section-3.2 for more information.
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:920)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.quickpay.QuickPayApplication.main(QuickPayApplication.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'tokenProvider' defined in file [/Users/kwon/Desktop/repo/QuickPay/java/target/classes/com/quickpay/security/jwt/TokenProvider.class]: Invocation of init method failed; nested exception is io.jsonwebtoken.security.WeakKeyException: The specified key byte array is 152 bits which is not secure enough for any JWT HMAC-SHA algorithm.  The JWT JWA Specification (RFC 7518, Section 3.2) states that keys used with HMAC-SHA algorithms MUST have a size >= 256 bits (the key size must be greater than or equal to the hash output size).  Consider using the io.jsonwebtoken.security.Keys#secretKeyFor(SignatureAlgorithm) method to create a key guaranteed to be secure enough for your preferred HMAC-SHA algorithm.  See https://tools.ietf.org/html/rfc7518#section-3.2 for more information.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 22 common frames omitted
+Caused by: io.jsonwebtoken.security.WeakKeyException: The specified key byte array is 152 bits which is not secure enough for any JWT HMAC-SHA algorithm.  The JWT JWA Specification (RFC 7518, Section 3.2) states that keys used with HMAC-SHA algorithms MUST have a size >= 256 bits (the key size must be greater than or equal to the hash output size).  Consider using the io.jsonwebtoken.security.Keys#secretKeyFor(SignatureAlgorithm) method to create a key guaranteed to be secure enough for your preferred HMAC-SHA algorithm.  See https://tools.ietf.org/html/rfc7518#section-3.2 for more information.
+	at io.jsonwebtoken.security.Keys.hmacShaKeyFor(Keys.java:96)
+	at com.quickpay.security.jwt.TokenProvider.afterPropertiesSet(TokenProvider.java:49)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 33 common frames omitted
+
+12-07-2023 11:35:35.389 -05:00      INFO 6116 --- [restartedMain] com.quickpay.QuickPayApplication         : Starting QuickPayApplication using Java 19.0.1 on Youngjins-MBP.lan with PID 6116 (/Users/kwon/Desktop/repo/QuickPay/java/target/classes started by kwon in /Users/kwon/Desktop/repo/QuickPay/java)
+12-07-2023 11:35:35.389 -05:00     DEBUG 6116 --- [background-preinit] org.jboss.logging                        : Logging Provider: org.jboss.logging.Log4j2LoggerProvider
+12-07-2023 11:35:35.390 -05:00     DEBUG 6116 --- [restartedMain] com.quickpay.QuickPayApplication         : Running with Spring Boot v2.7.12, Spring v5.3.27
+12-07-2023 11:35:35.390 -05:00      INFO 6116 --- [restartedMain] com.quickpay.QuickPayApplication         : No active profile set, falling back to 1 default profile: "default"
+12-07-2023 11:35:36.164 -05:00      WARN 6116 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationController' defined in file [/Users/kwon/Desktop/repo/QuickPay/java/target/classes/com/quickpay/controller/AuthenticationController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'tokenProvider' defined in file [/Users/kwon/Desktop/repo/QuickPay/java/target/classes/com/quickpay/security/jwt/TokenProvider.class]: Invocation of init method failed; nested exception is io.jsonwebtoken.io.DecodingException: Illegal base64 character: '.'
+12-07-2023 11:35:36.180 -05:00     ERROR 6116 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationController' defined in file [/Users/kwon/Desktop/repo/QuickPay/java/target/classes/com/quickpay/controller/AuthenticationController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'tokenProvider' defined in file [/Users/kwon/Desktop/repo/QuickPay/java/target/classes/com/quickpay/security/jwt/TokenProvider.class]: Invocation of init method failed; nested exception is io.jsonwebtoken.io.DecodingException: Illegal base64 character: '.'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:920)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.quickpay.QuickPayApplication.main(QuickPayApplication.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'tokenProvider' defined in file [/Users/kwon/Desktop/repo/QuickPay/java/target/classes/com/quickpay/security/jwt/TokenProvider.class]: Invocation of init method failed; nested exception is io.jsonwebtoken.io.DecodingException: Illegal base64 character: '.'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 22 common frames omitted
+Caused by: io.jsonwebtoken.io.DecodingException: Illegal base64 character: '.'
+	at io.jsonwebtoken.io.Base64.ctoi(Base64.java:221)
+	at io.jsonwebtoken.io.Base64.decodeFast(Base64.java:270)
+	at io.jsonwebtoken.io.Base64Decoder.decode(Base64Decoder.java:36)
+	at io.jsonwebtoken.io.Base64Decoder.decode(Base64Decoder.java:23)
+	at io.jsonwebtoken.io.ExceptionPropagatingDecoder.decode(ExceptionPropagatingDecoder.java:36)
+	at com.quickpay.security.jwt.TokenProvider.afterPropertiesSet(TokenProvider.java:48)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 33 common frames omitted
+
+12-07-2023 11:35:55.877 -05:00     DEBUG 6121 --- [background-preinit] org.jboss.logging                        : Logging Provider: org.jboss.logging.Log4j2LoggerProvider
+12-07-2023 11:35:55.877 -05:00      INFO 6121 --- [restartedMain] com.quickpay.QuickPayApplication         : Starting QuickPayApplication using Java 19.0.1 on Youngjins-MBP.lan with PID 6121 (/Users/kwon/Desktop/repo/QuickPay/java/target/classes started by kwon in /Users/kwon/Desktop/repo/QuickPay/java)
+12-07-2023 11:35:55.877 -05:00     DEBUG 6121 --- [restartedMain] com.quickpay.QuickPayApplication         : Running with Spring Boot v2.7.12, Spring v5.3.27
+12-07-2023 11:35:55.877 -05:00      INFO 6121 --- [restartedMain] com.quickpay.QuickPayApplication         : No active profile set, falling back to 1 default profile: "default"
+12-07-2023 11:35:56.757 -05:00      WARN 6121 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**', OPTIONS]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+12-07-2023 11:35:56.889 -05:00     DEBUG 6121 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.AccountController:
+	{GET [/account]}: getAccountByAccountId(Integer)
+	{POST [/account]}: createAccount(Account)
+	{PUT [/account]}: updateBalance(Account)
+	{DELETE [/account]}: deleteAccount(Account)
+12-07-2023 11:35:56.890 -05:00     DEBUG 6121 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.AuthenticationController:
+	{POST [/register]}: register(RegisterUserDto)
+	{POST [/login]}: login(LoginDto)
+12-07-2023 11:35:56.892 -05:00     DEBUG 6121 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.FriendRequestController:
+	{PUT [/friendrequest/accept]}: acceptFriendRequest(Integer,Integer)
+	{PUT [/friendrequest/reject]}: rejectFriendRequest(Integer,Integer)
+	{DELETE [/friendrequest]}: deleteFriendRequest(Integer,Integer)
+	{GET [/friendrequest]}: getFriendRequestStatus(Integer,Integer)
+	{POST [/friendrequest]}: createFriendRequest(Integer,Integer,String)
+12-07-2023 11:35:56.892 -05:00     DEBUG 6121 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.FriendsController:
+	{DELETE [/friends]}: removeFriend(Integer,Integer)
+	{GET [/friends]}: getFriendList(Integer)
+	{POST [/friends]}: addFriend(Integer,Integer)
+12-07-2023 11:35:56.893 -05:00     DEBUG 6121 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.TransactionController:
+	{GET [/transaction]}: listAllTransactions()
+	{POST [/transaction]}: createTransaction(Transaction)
+	{PUT [/transaction]}: updateTransaction(Transaction)
+12-07-2023 11:35:56.894 -05:00     DEBUG 6121 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+12-07-2023 11:35:56.899 -05:00     DEBUG 6121 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 'beanNameHandlerMapping' {}
+12-07-2023 11:35:56.910 -05:00     DEBUG 6121 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+12-07-2023 11:35:56.948 -05:00     DEBUG 6121 --- [restartedMain] org.postgresql.Driver                    : Loading driver configuration via classloader jdk.internal.loader.ClassLoaders$AppClassLoader@251a69d7
+12-07-2023 11:35:56.949 -05:00     DEBUG 6121 --- [restartedMain] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:35:56.953 -05:00     DEBUG 6121 --- [restartedMain] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:35:56.954 -05:00     DEBUG 6121 --- [restartedMain] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:35:56.954 -05:00     DEBUG 6121 --- [restartedMain] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:35:56.958 -05:00     DEBUG 6121 --- [restartedMain] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:35:56.963 -05:00     DEBUG 6121 --- [restartedMain] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:35:56.963 -05:00     DEBUG 6121 --- [restartedMain] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:35:57.024 -05:00     DEBUG 6121 --- [restartedMain] org.postgresql.Driver                    : Connection error: 
+
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:646)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:180)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:235)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:223)
+	at org.postgresql.Driver.makeConnection(Driver.java:402)
+	at org.postgresql.Driver.connect(Driver.java:261)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:159)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:117)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:80)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:330)
+	at org.springframework.data.jdbc.repository.config.DialectResolver$DefaultDialectProvider.getDialect(DialectResolver.java:108)
+	at org.springframework.data.jdbc.repository.config.DialectResolver.lambda$getDialect$0(DialectResolver.java:78)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1602)
+	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:129)
+	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:527)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:513)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:150)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:647)
+	at org.springframework.data.jdbc.repository.config.DialectResolver.getDialect(DialectResolver.java:80)
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcDialect(AbstractJdbcConfiguration.java:186)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:638)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:233)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1284)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1245)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:494)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:342)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1174)
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcCustomConversions(AbstractJdbcConfiguration.java:117)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:486)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:920)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.quickpay.QuickPayApplication.main(QuickPayApplication.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+
+12-07-2023 11:35:58.029 -05:00     ERROR 6121 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : quickpay - Exception during pool initialization.
+
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:646)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:180)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:235)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:223)
+	at org.postgresql.Driver.makeConnection(Driver.java:402)
+	at org.postgresql.Driver.connect(Driver.java:261)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:159)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:117)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:80)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:330)
+	at org.springframework.data.jdbc.repository.config.DialectResolver$DefaultDialectProvider.getDialect(DialectResolver.java:108)
+	at org.springframework.data.jdbc.repository.config.DialectResolver.lambda$getDialect$0(DialectResolver.java:78)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1602)
+	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:129)
+	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:527)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:513)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:150)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:647)
+	at org.springframework.data.jdbc.repository.config.DialectResolver.getDialect(DialectResolver.java:80)
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcDialect(AbstractJdbcConfiguration.java:186)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:638)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:233)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1284)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1245)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:494)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:342)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1174)
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcCustomConversions(AbstractJdbcConfiguration.java:117)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:486)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:920)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.quickpay.QuickPayApplication.main(QuickPayApplication.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+
+12-07-2023 11:35:58.036 -05:00      WARN 6121 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jdbcMappingContext' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Unsatisfied dependency expressed through method 'jdbcMappingContext' parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+12-07-2023 11:35:58.069 -05:00     ERROR 6121 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jdbcMappingContext' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Unsatisfied dependency expressed through method 'jdbcMappingContext' parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:920)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.quickpay.QuickPayApplication.main(QuickPayApplication.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:658)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:486)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 22 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 36 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:658)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:638)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:233)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1284)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1245)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:494)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:342)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1174)
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcCustomConversions(AbstractJdbcConfiguration.java:117)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 37 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 56 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:83)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:330)
+	at org.springframework.data.jdbc.repository.config.DialectResolver$DefaultDialectProvider.getDialect(DialectResolver.java:108)
+	at org.springframework.data.jdbc.repository.config.DialectResolver.lambda$getDialect$0(DialectResolver.java:78)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1602)
+	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:129)
+	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:527)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:513)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:150)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:647)
+	at org.springframework.data.jdbc.repository.config.DialectResolver.getDialect(DialectResolver.java:80)
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcDialect(AbstractJdbcConfiguration.java:186)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 57 common frames omitted
+Caused by: org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:646)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:180)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:235)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:223)
+	at org.postgresql.Driver.makeConnection(Driver.java:402)
+	at org.postgresql.Driver.connect(Driver.java:261)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:159)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:117)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:80)
+	... 74 common frames omitted
+
+12-07-2023 11:47:22.084 -05:00     DEBUG 6293 --- [background-preinit] org.jboss.logging                        : Logging Provider: org.jboss.logging.Log4j2LoggerProvider
+12-07-2023 11:47:22.085 -05:00      INFO 6293 --- [restartedMain] com.quickpay.QuickPayApplication         : Starting QuickPayApplication using Java 19.0.1 on Youngjins-MBP.lan with PID 6293 (/Users/kwon/Desktop/repo/QuickPay/java/target/classes started by kwon in /Users/kwon/Desktop/repo/QuickPay/java)
+12-07-2023 11:47:22.085 -05:00     DEBUG 6293 --- [restartedMain] com.quickpay.QuickPayApplication         : Running with Spring Boot v2.7.12, Spring v5.3.27
+12-07-2023 11:47:22.085 -05:00      INFO 6293 --- [restartedMain] com.quickpay.QuickPayApplication         : No active profile set, falling back to 1 default profile: "default"
+12-07-2023 11:47:23.058 -05:00      WARN 6293 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**', OPTIONS]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+12-07-2023 11:47:23.201 -05:00     DEBUG 6293 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.AccountController:
+	{GET [/account]}: getAccountByAccountId(Integer)
+	{POST [/account]}: createAccount(Account)
+	{PUT [/account]}: updateBalance(Account)
+	{DELETE [/account]}: deleteAccount(Account)
+12-07-2023 11:47:23.202 -05:00     DEBUG 6293 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.AuthenticationController:
+	{POST [/register]}: register(RegisterUserDto)
+	{POST [/login]}: login(LoginDto)
+12-07-2023 11:47:23.205 -05:00     DEBUG 6293 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.FriendRequestController:
+	{PUT [/friendrequest/accept]}: acceptFriendRequest(Integer,Integer)
+	{PUT [/friendrequest/reject]}: rejectFriendRequest(Integer,Integer)
+	{DELETE [/friendrequest]}: deleteFriendRequest(Integer,Integer)
+	{GET [/friendrequest]}: getFriendRequestStatus(Integer,Integer)
+	{POST [/friendrequest]}: createFriendRequest(Integer,Integer,String)
+12-07-2023 11:47:23.205 -05:00     DEBUG 6293 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.FriendsController:
+	{DELETE [/friends]}: removeFriend(Integer,Integer)
+	{GET [/friends]}: getFriendList(Integer)
+	{POST [/friends]}: addFriend(Integer,Integer)
+12-07-2023 11:47:23.206 -05:00     DEBUG 6293 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.TransactionController:
+	{GET [/transaction]}: listAllTransactions()
+	{POST [/transaction]}: createTransaction(Transaction)
+	{PUT [/transaction]}: updateTransaction(Transaction)
+12-07-2023 11:47:23.207 -05:00     DEBUG 6293 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+12-07-2023 11:47:23.212 -05:00     DEBUG 6293 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 'beanNameHandlerMapping' {}
+12-07-2023 11:47:23.223 -05:00     DEBUG 6293 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+12-07-2023 11:47:23.262 -05:00     DEBUG 6293 --- [restartedMain] org.postgresql.Driver                    : Loading driver configuration via classloader jdk.internal.loader.ClassLoaders$AppClassLoader@251a69d7
+12-07-2023 11:47:23.262 -05:00     DEBUG 6293 --- [restartedMain] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:47:23.267 -05:00     DEBUG 6293 --- [restartedMain] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:47:23.268 -05:00     DEBUG 6293 --- [restartedMain] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:47:23.269 -05:00     DEBUG 6293 --- [restartedMain] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:47:23.273 -05:00     DEBUG 6293 --- [restartedMain] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:47:23.278 -05:00     DEBUG 6293 --- [restartedMain] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:47:23.278 -05:00     DEBUG 6293 --- [restartedMain] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:47:23.336 -05:00     DEBUG 6293 --- [restartedMain] org.postgresql.Driver                    : Connection error: 
+
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:646)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:180)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:235)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:223)
+	at org.postgresql.Driver.makeConnection(Driver.java:402)
+	at org.postgresql.Driver.connect(Driver.java:261)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:159)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:117)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:80)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:330)
+	at org.springframework.data.jdbc.repository.config.DialectResolver$DefaultDialectProvider.getDialect(DialectResolver.java:108)
+	at org.springframework.data.jdbc.repository.config.DialectResolver.lambda$getDialect$0(DialectResolver.java:78)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1602)
+	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:129)
+	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:527)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:513)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:150)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:647)
+	at org.springframework.data.jdbc.repository.config.DialectResolver.getDialect(DialectResolver.java:80)
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcDialect(AbstractJdbcConfiguration.java:186)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:638)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:233)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1284)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1245)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:494)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:342)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1174)
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcCustomConversions(AbstractJdbcConfiguration.java:117)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:486)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:920)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.quickpay.QuickPayApplication.main(QuickPayApplication.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+
+12-07-2023 11:47:24.342 -05:00     ERROR 6293 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : quickpay - Exception during pool initialization.
+
+org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:646)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:180)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:235)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:223)
+	at org.postgresql.Driver.makeConnection(Driver.java:402)
+	at org.postgresql.Driver.connect(Driver.java:261)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:159)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:117)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:80)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:330)
+	at org.springframework.data.jdbc.repository.config.DialectResolver$DefaultDialectProvider.getDialect(DialectResolver.java:108)
+	at org.springframework.data.jdbc.repository.config.DialectResolver.lambda$getDialect$0(DialectResolver.java:78)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1602)
+	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:129)
+	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:527)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:513)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:150)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:647)
+	at org.springframework.data.jdbc.repository.config.DialectResolver.getDialect(DialectResolver.java:80)
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcDialect(AbstractJdbcConfiguration.java:186)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:638)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:233)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1284)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1245)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:494)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:342)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1174)
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcCustomConversions(AbstractJdbcConfiguration.java:117)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:486)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:920)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.quickpay.QuickPayApplication.main(QuickPayApplication.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+
+12-07-2023 11:47:24.345 -05:00      WARN 6293 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jdbcMappingContext' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Unsatisfied dependency expressed through method 'jdbcMappingContext' parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+12-07-2023 11:47:24.365 -05:00     ERROR 6293 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jdbcMappingContext' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Unsatisfied dependency expressed through method 'jdbcMappingContext' parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:920)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.quickpay.QuickPayApplication.main(QuickPayApplication.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:658)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:486)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 22 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 36 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:658)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:638)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:233)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1284)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1245)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:494)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:342)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1174)
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcCustomConversions(AbstractJdbcConfiguration.java:117)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 37 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 56 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:83)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:330)
+	at org.springframework.data.jdbc.repository.config.DialectResolver$DefaultDialectProvider.getDialect(DialectResolver.java:108)
+	at org.springframework.data.jdbc.repository.config.DialectResolver.lambda$getDialect$0(DialectResolver.java:78)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1602)
+	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:129)
+	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:527)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:513)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:150)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:647)
+	at org.springframework.data.jdbc.repository.config.DialectResolver.getDialect(DialectResolver.java:80)
+	at org.springframework.data.jdbc.repository.config.AbstractJdbcConfiguration.jdbcDialect(AbstractJdbcConfiguration.java:186)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 57 common frames omitted
+Caused by: org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:646)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.tryConnect(ConnectionFactoryImpl.java:180)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:235)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:49)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:223)
+	at org.postgresql.Driver.makeConnection(Driver.java:402)
+	at org.postgresql.Driver.connect(Driver.java:261)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:159)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:117)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:80)
+	... 74 common frames omitted
+
+12-07-2023 11:48:17.133 -05:00     DEBUG 6306 --- [background-preinit] org.jboss.logging                        : Logging Provider: org.jboss.logging.Log4j2LoggerProvider
+12-07-2023 11:48:17.135 -05:00      INFO 6306 --- [restartedMain] com.quickpay.QuickPayApplication         : Starting QuickPayApplication using Java 19.0.1 on Youngjins-MBP.lan with PID 6306 (/Users/kwon/Desktop/repo/QuickPay/java/target/classes started by kwon in /Users/kwon/Desktop/repo/QuickPay/java)
+12-07-2023 11:48:17.135 -05:00     DEBUG 6306 --- [restartedMain] com.quickpay.QuickPayApplication         : Running with Spring Boot v2.7.12, Spring v5.3.27
+12-07-2023 11:48:17.135 -05:00      INFO 6306 --- [restartedMain] com.quickpay.QuickPayApplication         : No active profile set, falling back to 1 default profile: "default"
+12-07-2023 11:48:18.069 -05:00      WARN 6306 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**', OPTIONS]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+12-07-2023 11:48:18.200 -05:00     DEBUG 6306 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.AccountController:
+	{GET [/account]}: getAccountByAccountId(Integer)
+	{POST [/account]}: createAccount(Account)
+	{PUT [/account]}: updateBalance(Account)
+	{DELETE [/account]}: deleteAccount(Account)
+12-07-2023 11:48:18.202 -05:00     DEBUG 6306 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.AuthenticationController:
+	{POST [/register]}: register(RegisterUserDto)
+	{POST [/login]}: login(LoginDto)
+12-07-2023 11:48:18.204 -05:00     DEBUG 6306 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.FriendRequestController:
+	{PUT [/friendrequest/accept]}: acceptFriendRequest(Integer,Integer)
+	{PUT [/friendrequest/reject]}: rejectFriendRequest(Integer,Integer)
+	{DELETE [/friendrequest]}: deleteFriendRequest(Integer,Integer)
+	{GET [/friendrequest]}: getFriendRequestStatus(Integer,Integer)
+	{POST [/friendrequest]}: createFriendRequest(Integer,Integer,String)
+12-07-2023 11:48:18.205 -05:00     DEBUG 6306 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.FriendsController:
+	{DELETE [/friends]}: removeFriend(Integer,Integer)
+	{GET [/friends]}: getFriendList(Integer)
+	{POST [/friends]}: addFriend(Integer,Integer)
+12-07-2023 11:48:18.205 -05:00     DEBUG 6306 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.TransactionController:
+	{GET [/transaction]}: listAllTransactions()
+	{POST [/transaction]}: createTransaction(Transaction)
+	{PUT [/transaction]}: updateTransaction(Transaction)
+12-07-2023 11:48:18.207 -05:00     DEBUG 6306 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+12-07-2023 11:48:18.211 -05:00     DEBUG 6306 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 'beanNameHandlerMapping' {}
+12-07-2023 11:48:18.222 -05:00     DEBUG 6306 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+12-07-2023 11:48:18.258 -05:00     DEBUG 6306 --- [restartedMain] org.postgresql.Driver                    : Loading driver configuration via classloader jdk.internal.loader.ClassLoaders$AppClassLoader@251a69d7
+12-07-2023 11:48:18.259 -05:00     DEBUG 6306 --- [restartedMain] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:48:18.265 -05:00     DEBUG 6306 --- [restartedMain] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:48:18.266 -05:00     DEBUG 6306 --- [restartedMain] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:48:18.266 -05:00     DEBUG 6306 --- [restartedMain] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:48:18.270 -05:00     DEBUG 6306 --- [restartedMain] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:48:18.274 -05:00     DEBUG 6306 --- [restartedMain] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:48:18.274 -05:00     DEBUG 6306 --- [restartedMain] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:48:18.448 -05:00      INFO 6306 --- [restartedMain] com.quickpay.QuickPayApplication         : Started QuickPayApplication in 1.561 seconds (JVM running for 1.841)
+12-07-2023 11:48:18.465 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:48:18.465 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:48:18.465 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:48:18.465 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:48:18.465 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:48:18.466 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:48:18.466 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:48:18.486 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:48:18.486 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:48:18.486 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:48:18.486 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:48:18.487 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:48:18.487 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:48:18.487 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:48:18.512 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:48:18.513 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:48:18.514 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:48:18.515 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:48:18.515 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:48:18.516 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:48:18.516 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:48:18.553 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:48:18.553 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:48:18.553 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:48:18.554 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:48:18.554 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:48:18.554 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:48:18.554 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:48:18.578 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:48:18.578 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:48:18.578 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:48:18.578 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:48:18.578 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:48:18.579 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:48:18.580 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:48:18.596 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:48:18.596 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:48:18.596 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:48:18.597 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:48:18.597 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:48:18.597 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:48:18.597 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:48:18.613 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:48:18.613 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:48:18.613 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:48:18.613 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:48:18.613 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:48:18.614 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:48:18.614 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:48:18.626 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:48:18.627 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:48:18.627 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:48:18.627 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:48:18.627 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:48:18.628 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:48:18.628 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:48:18.642 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:48:18.643 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:48:18.643 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:48:18.643 -05:00     DEBUG 6306 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:48:18.643 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:48:18.643 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:48:18.643 -05:00     DEBUG 6306 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:50:29.994 -05:00     DEBUG 6340 --- [background-preinit] org.jboss.logging                        : Logging Provider: org.jboss.logging.Log4j2LoggerProvider
+12-07-2023 11:50:29.998 -05:00      INFO 6340 --- [restartedMain] com.quickpay.QuickPayApplication         : Starting QuickPayApplication using Java 19.0.1 on Youngjins-MBP.lan with PID 6340 (/Users/kwon/Desktop/repo/QuickPay/java/target/classes started by kwon in /Users/kwon/Desktop/repo/QuickPay/java)
+12-07-2023 11:50:29.998 -05:00     DEBUG 6340 --- [restartedMain] com.quickpay.QuickPayApplication         : Running with Spring Boot v2.7.12, Spring v5.3.27
+12-07-2023 11:50:29.999 -05:00      INFO 6340 --- [restartedMain] com.quickpay.QuickPayApplication         : No active profile set, falling back to 1 default profile: "default"
+12-07-2023 11:50:30.900 -05:00      WARN 6340 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**', OPTIONS]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+12-07-2023 11:50:31.019 -05:00     DEBUG 6340 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.AccountController:
+	{DELETE [/account]}: deleteAccount(Account)
+	{PUT [/account]}: updateBalance(Account)
+	{POST [/account]}: createAccount(Account)
+	{GET [/account]}: getAccountByAccountId(Integer)
+12-07-2023 11:50:31.021 -05:00     DEBUG 6340 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.AuthenticationController:
+	{POST [/register]}: register(RegisterUserDto)
+	{POST [/login]}: login(LoginDto)
+12-07-2023 11:50:31.023 -05:00     DEBUG 6340 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.FriendRequestController:
+	{POST [/friendrequest]}: createFriendRequest(Integer,Integer,String)
+	{GET [/friendrequest]}: getFriendRequestStatus(Integer,Integer)
+	{DELETE [/friendrequest]}: deleteFriendRequest(Integer,Integer)
+	{PUT [/friendrequest/reject]}: rejectFriendRequest(Integer,Integer)
+	{PUT [/friendrequest/accept]}: acceptFriendRequest(Integer,Integer)
+12-07-2023 11:50:31.023 -05:00     DEBUG 6340 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.FriendsController:
+	{POST [/friends]}: addFriend(Integer,Integer)
+	{GET [/friends]}: getFriendList(Integer)
+	{DELETE [/friends]}: removeFriend(Integer,Integer)
+12-07-2023 11:50:31.023 -05:00     DEBUG 6340 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	c.q.c.TransactionController:
+	{PUT [/transaction]}: updateTransaction(Transaction)
+	{POST [/transaction]}: createTransaction(Transaction)
+	{GET [/transaction]}: listAllTransactions()
+12-07-2023 11:50:31.024 -05:00     DEBUG 6340 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 
+	o.s.b.a.w.s.e.BasicErrorController:
+	{ [/error]}: error(HttpServletRequest)
+	{ [/error], produces [text/html]}: errorHtml(HttpServletRequest,HttpServletResponse)
+12-07-2023 11:50:31.029 -05:00     DEBUG 6340 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 'beanNameHandlerMapping' {}
+12-07-2023 11:50:31.039 -05:00     DEBUG 6340 --- [restartedMain] _.s.web.servlet.HandlerMapping.Mappings  : 'resourceHandlerMapping' {/webjars/**=ResourceHttpRequestHandler [classpath [META-INF/resources/webjars/]], /**=ResourceHttpRequestHandler [classpath [META-INF/resources/], classpath [resources/], classpath [static/], classpath [public/], ServletContext [/]]}
+12-07-2023 11:50:31.073 -05:00     DEBUG 6340 --- [restartedMain] org.postgresql.Driver                    : Loading driver configuration via classloader jdk.internal.loader.ClassLoaders$AppClassLoader@251a69d7
+12-07-2023 11:50:31.073 -05:00     DEBUG 6340 --- [restartedMain] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:50:31.077 -05:00     DEBUG 6340 --- [restartedMain] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:50:31.078 -05:00     DEBUG 6340 --- [restartedMain] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:50:31.078 -05:00     DEBUG 6340 --- [restartedMain] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:50:31.082 -05:00     DEBUG 6340 --- [restartedMain] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:50:31.086 -05:00     DEBUG 6340 --- [restartedMain] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:50:31.086 -05:00     DEBUG 6340 --- [restartedMain] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:50:31.236 -05:00      INFO 6340 --- [restartedMain] com.quickpay.QuickPayApplication         : Started QuickPayApplication in 1.49 seconds (JVM running for 1.763)
+12-07-2023 11:50:31.257 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:50:31.257 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:50:31.257 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:50:31.257 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:50:31.257 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:50:31.258 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:50:31.258 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:50:31.282 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:50:31.282 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:50:31.282 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:50:31.282 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:50:31.282 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:50:31.283 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:50:31.283 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:50:31.299 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:50:31.299 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:50:31.299 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:50:31.299 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:50:31.299 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:50:31.299 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:50:31.300 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:50:31.316 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:50:31.317 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:50:31.317 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:50:31.317 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:50:31.317 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:50:31.317 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:50:31.319 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:50:31.348 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:50:31.348 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:50:31.348 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:50:31.348 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:50:31.348 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:50:31.348 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:50:31.348 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:50:31.364 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:50:31.364 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:50:31.364 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:50:31.364 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:50:31.364 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:50:31.364 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:50:31.364 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:50:31.391 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:50:31.391 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:50:31.391 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:50:31.391 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:50:31.391 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:50:31.392 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:50:31.392 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:50:31.405 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:50:31.405 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:50:31.405 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:50:31.405 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:50:31.405 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:50:31.406 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:50:31.406 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:50:31.423 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.Driver                    : Connecting with URL: jdbc:postgresql://localhost:5432/quickpay
+12-07-2023 11:50:31.423 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         : PostgreSQL JDBC Driver 42.3.8
+12-07-2023 11:50:31.423 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setDefaultFetchSize = 0
+12-07-2023 11:50:31.423 -05:00     DEBUG 6340 --- [quickpay connection adder] org.postgresql.jdbc.PgConnection         :   setPrepareThreshold = 5
+12-07-2023 11:50:31.423 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Trying to establish a protocol version 3 connection to localhost:5432
+12-07-2023 11:50:31.426 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Receive Buffer Size is 408,300
+12-07-2023 11:50:31.426 -05:00     DEBUG 6340 --- [quickpay connection adder] o.p.core.v3.ConnectionFactoryImpl        : Send Buffer Size is 146,988
+12-07-2023 11:51:38.239 -05:00      INFO 6361 --- [restartedMain] com.quickpay.QuickPayApplication         : Starting QuickPayApplication using Java 19.0.1 on Youngjins-MBP.lan with PID 6361 (/Users/kwon/Desktop/repo/QuickPay/java/target/classes started by kwon in /Users/kwon/Desktop/repo/QuickPay/java)
+12-07-2023 11:51:38.240 -05:00      INFO 6361 --- [restartedMain] com.quickpay.QuickPayApplication         : No active profile set, falling back to 1 default profile: "default"
+12-07-2023 11:51:39.151 -05:00      WARN 6361 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**', OPTIONS]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+12-07-2023 11:51:39.514 -05:00      INFO 6361 --- [restartedMain] com.quickpay.QuickPayApplication         : Started QuickPayApplication in 1.539 seconds (JVM running for 1.784)
+12-07-2023 14:53:14.038 -05:00 A6B186B3BCA530D67B4464FAFED86CFB Salaj OPTIONS /login  INFO 6361 --- [http-nio-9000-exec-1] com.quickpay.LoggingFilter               : OPTIONS : /login
+12-07-2023 14:53:14.052 -05:00 A6B186B3BCA530D67B4464FAFED86CFB Salaj OPTIONS /login  INFO 6361 --- [http-nio-9000-exec-1] com.quickpay.LoggingFilter               : Completed : 403
+12-07-2023 14:53:15.025 -05:00 C6E13E3CFB14C793D32F41A57F6E58E5 Salaj OPTIONS /login  INFO 6361 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : OPTIONS : /login
+12-07-2023 14:53:15.026 -05:00 C6E13E3CFB14C793D32F41A57F6E58E5 Salaj OPTIONS /login  INFO 6361 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : Completed : 403
+12-07-2023 14:53:40.076 -05:00 F0961CAEEB1D9C3ABCD83975F0ED0482 Salaj OPTIONS /login  INFO 6361 --- [http-nio-9000-exec-3] com.quickpay.LoggingFilter               : OPTIONS : /login
+12-07-2023 14:53:40.078 -05:00 F0961CAEEB1D9C3ABCD83975F0ED0482 Salaj OPTIONS /login  INFO 6361 --- [http-nio-9000-exec-3] com.quickpay.LoggingFilter               : Completed : 403
+12-07-2023 14:54:34.682 -05:00      INFO 8592 --- [restartedMain] com.quickpay.QuickPayApplication         : Starting QuickPayApplication using Java 19.0.1 on Youngjins-MBP.lan with PID 8592 (/Users/kwon/Desktop/repo/QuickPay/java/target/classes started by kwon in /Users/kwon/Desktop/repo/QuickPay/java)
+12-07-2023 14:54:34.683 -05:00      INFO 8592 --- [restartedMain] com.quickpay.QuickPayApplication         : No active profile set, falling back to 1 default profile: "default"
+12-07-2023 14:54:35.640 -05:00      WARN 8592 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**', OPTIONS]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+12-07-2023 14:54:35.990 -05:00      INFO 8592 --- [restartedMain] com.quickpay.QuickPayApplication         : Started QuickPayApplication in 1.561 seconds (JVM running for 1.877)
+12-07-2023 14:54:46.428 -05:00 B3B13A250748E986C984CC71318ECEEF Salaj OPTIONS /login  INFO 8592 --- [http-nio-9000-exec-1] com.quickpay.LoggingFilter               : OPTIONS : /login
+12-07-2023 14:54:46.441 -05:00 B3B13A250748E986C984CC71318ECEEF Salaj OPTIONS /login  INFO 8592 --- [http-nio-9000-exec-1] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 14:54:46.446 -05:00 DFBB07ACA5A9719745CF9A8D726E08E0 Salaj POST /login  INFO 8592 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:01:17.406 -05:00      INFO 8677 --- [restartedMain] com.quickpay.QuickPayApplication         : Starting QuickPayApplication using Java 19.0.1 on Youngjins-MBP.lan with PID 8677 (/Users/kwon/Desktop/repo/QuickPay/java/target/classes started by kwon in /Users/kwon/Desktop/repo/QuickPay/java)
+12-07-2023 15:01:17.407 -05:00      INFO 8677 --- [restartedMain] com.quickpay.QuickPayApplication         : No active profile set, falling back to 1 default profile: "default"
+12-07-2023 15:01:18.321 -05:00      WARN 8677 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**', OPTIONS]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+12-07-2023 15:01:18.696 -05:00      INFO 8677 --- [restartedMain] com.quickpay.QuickPayApplication         : Started QuickPayApplication in 1.53 seconds (JVM running for 1.756)
+12-07-2023 15:01:48.165 -05:00 D3671385951BD8AFED9BC758BFF7B214 Youngjin POST /login  INFO 8677 --- [http-nio-9000-exec-1] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:01:49.482 -05:00 19BF69715F9660640963E6CC8B1EAB90 Youngjin POST /login  INFO 8677 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:21:33.686 -05:00      INFO 8879 --- [restartedMain] com.quickpay.QuickPayApplication         : Starting QuickPayApplication using Java 19.0.1 on Youngjins-MBP.lan with PID 8879 (/Users/kwon/Desktop/repo/QuickPay/java/target/classes started by kwon in /Users/kwon/Desktop/repo/QuickPay/java)
+12-07-2023 15:21:33.687 -05:00      INFO 8879 --- [restartedMain] com.quickpay.QuickPayApplication         : No active profile set, falling back to 1 default profile: "default"
+12-07-2023 15:21:34.552 -05:00      WARN 8879 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'authenticationController' defined in file [/Users/kwon/Desktop/repo/QuickPay/java/target/classes/com/quickpay/controller/AuthenticationController.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.quickpay.controller.AuthenticationController]: Constructor threw exception; nested exception is java.lang.IllegalStateException: This object has not been built
+12-07-2023 15:21:34.571 -05:00     ERROR 8879 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'authenticationController' defined in file [/Users/kwon/Desktop/repo/QuickPay/java/target/classes/com/quickpay/controller/AuthenticationController.class]: Bean instantiation via constructor failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.quickpay.controller.AuthenticationController]: Constructor threw exception; nested exception is java.lang.IllegalStateException: This object has not been built
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:315)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:296)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:920)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.quickpay.QuickPayApplication.main(QuickPayApplication.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.quickpay.controller.AuthenticationController]: Constructor threw exception; nested exception is java.lang.IllegalStateException: This object has not been built
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:224)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:117)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:311)
+	... 22 common frames omitted
+Caused by: java.lang.IllegalStateException: This object has not been built
+	at org.springframework.security.config.annotation.AbstractSecurityBuilder.getObject(AbstractSecurityBuilder.java:51)
+	at com.quickpay.controller.AuthenticationController.<init>(AuthenticationController.java:33)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:211)
+	... 24 common frames omitted
+
+12-07-2023 15:24:28.353 -05:00      INFO 8907 --- [restartedMain] com.quickpay.QuickPayApplication         : Starting QuickPayApplication using Java 19.0.1 on Youngjins-MBP.lan with PID 8907 (/Users/kwon/Desktop/repo/QuickPay/java/target/classes started by kwon in /Users/kwon/Desktop/repo/QuickPay/java)
+12-07-2023 15:24:28.354 -05:00      INFO 8907 --- [restartedMain] com.quickpay.QuickPayApplication         : No active profile set, falling back to 1 default profile: "default"
+12-07-2023 15:24:29.187 -05:00      WARN 8907 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'authenticationController' defined in file [/Users/kwon/Desktop/repo/QuickPay/java/target/classes/com/quickpay/controller/AuthenticationController.class]: Unsatisfied dependency expressed through constructor parameter 1; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.security.authentication.AuthenticationManager' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+12-07-2023 15:24:29.206 -05:00     ERROR 8907 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 1 of constructor in com.quickpay.controller.AuthenticationController required a bean of type 'org.springframework.security.authentication.AuthenticationManager' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.security.authentication.AuthenticationManager' in your configuration.
+
+12-07-2023 15:27:04.091 -05:00      INFO 8925 --- [restartedMain] com.quickpay.QuickPayApplication         : Starting QuickPayApplication using Java 19.0.1 on Youngjins-MBP.lan with PID 8925 (/Users/kwon/Desktop/repo/QuickPay/java/target/classes started by kwon in /Users/kwon/Desktop/repo/QuickPay/java)
+12-07-2023 15:27:04.092 -05:00      INFO 8925 --- [restartedMain] com.quickpay.QuickPayApplication         : No active profile set, falling back to 1 default profile: "default"
+12-07-2023 15:27:05.004 -05:00      WARN 8925 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**', OPTIONS]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+12-07-2023 15:27:05.361 -05:00      INFO 8925 --- [restartedMain] com.quickpay.QuickPayApplication         : Started QuickPayApplication in 1.52 seconds (JVM running for 1.798)
+12-07-2023 15:38:52.678 -05:00      INFO 9084 --- [restartedMain] com.quickpay.QuickPayApplication         : Starting QuickPayApplication using Java 19.0.1 on Youngjins-MBP.lan with PID 9084 (/Users/kwon/Desktop/repo/QuickPay/java/target/classes started by kwon in /Users/kwon/Desktop/repo/QuickPay/java)
+12-07-2023 15:38:52.679 -05:00      INFO 9084 --- [restartedMain] com.quickpay.QuickPayApplication         : No active profile set, falling back to 1 default profile: "default"
+12-07-2023 15:38:53.682 -05:00      WARN 9084 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**', OPTIONS]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+12-07-2023 15:38:54.044 -05:00      INFO 9084 --- [restartedMain] com.quickpay.QuickPayApplication         : Started QuickPayApplication in 1.615 seconds (JVM running for 1.853)
+12-07-2023 15:39:00.969 -05:00 7CCDFE9332414DA3C459C3155257425B Youngjin GET /user/user  INFO 9084 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : GET : /user/user
+12-07-2023 15:39:01.052 -05:00 7CCDFE9332414DA3C459C3155257425B Youngjin GET /user/user  INFO 9084 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:41:35.461 -05:00      INFO 9135 --- [restartedMain] com.quickpay.QuickPayApplication         : Starting QuickPayApplication using Java 19.0.1 on Youngjins-MBP.lan with PID 9135 (/Users/kwon/Desktop/repo/QuickPay/java/target/classes started by kwon in /Users/kwon/Desktop/repo/QuickPay/java)
+12-07-2023 15:41:35.461 -05:00      INFO 9135 --- [restartedMain] com.quickpay.QuickPayApplication         : No active profile set, falling back to 1 default profile: "default"
+12-07-2023 15:41:36.365 -05:00      WARN 9135 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**', OPTIONS]. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+12-07-2023 15:41:36.712 -05:00      INFO 9135 --- [restartedMain] com.quickpay.QuickPayApplication         : Started QuickPayApplication in 1.482 seconds (JVM running for 1.707)
+12-07-2023 15:41:40.611 -05:00 7CCDFE9332414DA3C459C3155257425B Youngjin GET /user/user  INFO 9135 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : GET : /user/user
+12-07-2023 15:41:40.709 -05:00 7CCDFE9332414DA3C459C3155257425B Youngjin GET /user/user  INFO 9135 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:42:39.226 -05:00 F44B3B615C8A3DA5CC098ED31A55257D Youngjin OPTIONS /login  INFO 9135 --- [http-nio-9000-exec-3] com.quickpay.LoggingFilter               : OPTIONS : /login
+12-07-2023 15:42:39.240 -05:00 F44B3B615C8A3DA5CC098ED31A55257D Youngjin OPTIONS /login  INFO 9135 --- [http-nio-9000-exec-3] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:42:39.244 -05:00 F90EB6D54467B48CF02E05A3AF6FF3B3 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-4] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:42:39.414 -05:00 F90EB6D54467B48CF02E05A3AF6FF3B3 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-4] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:42:48.067 -05:00 576C27E7B8B5EA31ED758E339C49A952 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-6] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:42:48.113 -05:00 576C27E7B8B5EA31ED758E339C49A952 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-6] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:42:48.980 -05:00 2D33724F58796297EA249AD041B7B7AC Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-7] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:42:49.031 -05:00 2D33724F58796297EA249AD041B7B7AC Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-7] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:42:49.508 -05:00 7CF8E2ED48098B82371D41DE10141A0D Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-8] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:42:49.572 -05:00 7CF8E2ED48098B82371D41DE10141A0D Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-8] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:42:49.876 -05:00 0D33E3266D9D10CB70DCACA3075A8311 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-9] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:42:49.933 -05:00 0D33E3266D9D10CB70DCACA3075A8311 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-9] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:42:50.557 -05:00 F710E34022F93C45ADFCF1700736BB83 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-10] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:42:50.609 -05:00 F710E34022F93C45ADFCF1700736BB83 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-10] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:42:51.569 -05:00 657FE7F063B5D3CE41793A0CAE30B70D Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-1] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:42:51.627 -05:00 657FE7F063B5D3CE41793A0CAE30B70D Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-1] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:43:29.385 -05:00 33CC9139FD061CB570C757AF7344AC09 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:43:29.434 -05:00 33CC9139FD061CB570C757AF7344AC09 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:43:30.054 -05:00 5BB8C85A7EE2F894CDCFB654A3E837A3 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-3] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:43:30.104 -05:00 5BB8C85A7EE2F894CDCFB654A3E837A3 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-3] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:43:30.288 -05:00 BD3168F526A6DB5B88C97668DF30AF6E Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-4] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:43:30.312 -05:00 BD3168F526A6DB5B88C97668DF30AF6E Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-4] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:43:30.749 -05:00 CFFE9E807F83E50FEF789D4BD3A9BE34 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-5] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:43:30.787 -05:00 CFFE9E807F83E50FEF789D4BD3A9BE34 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-5] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:43:32.323 -05:00 07DC558AF2C06A5EBBF4D8990739F430 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-6] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:43:32.369 -05:00 07DC558AF2C06A5EBBF4D8990739F430 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-6] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:43:33.592 -05:00 4F73F0F43A97973F8CD1D99915624EB8 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-7] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:43:33.632 -05:00 4F73F0F43A97973F8CD1D99915624EB8 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-7] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:45:04.308 -05:00 6E13EE71E352ADC1CE6476C46BF17E73 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-9] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:45:04.363 -05:00 6E13EE71E352ADC1CE6476C46BF17E73 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-9] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:45:45.095 -05:00 11FF90D365D3CBF170B6FEFCAA3C4556 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-1] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:45:45.184 -05:00 11FF90D365D3CBF170B6FEFCAA3C4556 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-1] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:45:48.845 -05:00 C96D130A98A0721112CFC89391AF62A8 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:45:48.907 -05:00 C96D130A98A0721112CFC89391AF62A8 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:45:50.408 -05:00 2ABD4FCC507199F474F1E35B50DA88C9 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-3] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:45:50.468 -05:00 2ABD4FCC507199F474F1E35B50DA88C9 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-3] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:46:43.247 -05:00 2E26FB075B4E82191CBA8139DECE9DD0 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-5] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:46:43.307 -05:00 2E26FB075B4E82191CBA8139DECE9DD0 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-5] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:46:43.845 -05:00 88FB58DF1AA2021F449ED07F2F169C5C Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-6] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:46:43.898 -05:00 88FB58DF1AA2021F449ED07F2F169C5C Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-6] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:49:25.885 -05:00 77131193B0ED1FABB4B6E82CAED30FBA Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-8] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:49:25.932 -05:00 77131193B0ED1FABB4B6E82CAED30FBA Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-8] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:49:26.525 -05:00 D61FD65EC259AEFF06C44ECF1B0E53B4 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-9] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:49:26.588 -05:00 D61FD65EC259AEFF06C44ECF1B0E53B4 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-9] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:49:27.804 -05:00 B90166AEAD398962B651AE704DF682F3 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-10] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:49:27.854 -05:00 B90166AEAD398962B651AE704DF682F3 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-10] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:57:06.428 -05:00 5C640B3761D31FF882EFAC6685321B8B Youngjin OPTIONS /login  INFO 9135 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : OPTIONS : /login
+12-07-2023 15:57:06.435 -05:00 5C640B3761D31FF882EFAC6685321B8B Youngjin OPTIONS /login  INFO 9135 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 15:57:06.442 -05:00 16584C4132FC3D58F3BDCE6ED7BAC93F Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-3] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 15:57:06.491 -05:00 16584C4132FC3D58F3BDCE6ED7BAC93F Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-3] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 16:05:49.512 -05:00 BE078B4713770C08BE40D0D34D515C28 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-5] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:05:51.471 -05:00 C20571F40DCA4598A5BD4A1604B839D9 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-6] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:05:52.120 -05:00 D70F57F27361C69A74ACF7B6C5A0E1B0 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-7] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:05:53.265 -05:00 0742BC1929876490F1FE281A0E04E27C Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-8] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:05:54.013 -05:00 1558E6A87030FA14771C6A7198F6A1B5 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-9] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:05:54.945 -05:00 74BB726EC78B905DB1CF05B1A2DFC809 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-10] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:05.231 -05:00 CF6F3FA9AB0C5B5AF7CAA4B368BF34D5 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-1] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:05.653 -05:00 309E17D2E4A202271A4904AE23BD26E1 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:05.976 -05:00 52DA49895ADC3E7B5F2441F1CB10AB50 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-3] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:06.410 -05:00 7C408FF550278FC62F0AD8EB5B87BA3D Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-4] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:06.608 -05:00 DCE88836551D0586C96E5C8F1EC22809 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-5] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:06.753 -05:00 06978F4D5C84CB6731262CEC80F86054 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-6] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:07.097 -05:00 C932DE119F77C7EC2F799E23AE26CD0F Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-7] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:07.312 -05:00 267780A9A1A885FBB4BE56EA1E33DE42 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-8] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:07.643 -05:00 8E9E7A02FB11C8206A6B3C4FCC381042 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-9] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:15.934 -05:00 D3E67FB3009E6C7CF304F7D745D6C5E3 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-10] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:16.632 -05:00 F9CB7107B596E35C7BDEF50758726FB1 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-1] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:16.746 -05:00 143391BD0CF2FA20B046AA59B8B5AEFB Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:16.847 -05:00 A7DC9306C2B89ADC0327FE8DF4782FB3 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-3] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:16.975 -05:00 C4B0E9E4ECA35FEF39FE365380DA9BC6 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-4] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:17.101 -05:00 641173B5696207617C320C68190A2C95 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-5] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:17.201 -05:00 3232AAD77E176A3B46A94FB89D5037E2 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-6] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:06:59.714 -05:00 0C91F684244C9A258C8B963EBB736217 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-8] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:07:06.304 -05:00 5611EFF4DFBEBD2F5FE95D678D130063 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-9] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:07:07.044 -05:00 0BC9CDFCCF6D55F2EFCC206892BB2BE4 Youngjin OPTIONS /login  INFO 9135 --- [http-nio-9000-exec-10] com.quickpay.LoggingFilter               : OPTIONS : /login
+12-07-2023 16:07:07.046 -05:00 0BC9CDFCCF6D55F2EFCC206892BB2BE4 Youngjin OPTIONS /login  INFO 9135 --- [http-nio-9000-exec-10] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 16:07:07.049 -05:00 294D17FF0DAB483E53F93B50381D81E5 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-1] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:07:07.560 -05:00 135F20BE7192F6A8E0BE60938A71570D Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-2] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:07:34.091 -05:00 B31CADDE9227122D523A750E97A4097B Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-3] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:07:34.148 -05:00 B31CADDE9227122D523A750E97A4097B Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-3] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 16:08:42.137 -05:00 B6D8CCA76E827AA10935797F004B2916 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-5] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:08:42.211 -05:00 B6D8CCA76E827AA10935797F004B2916 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-5] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 16:08:54.418 -05:00 B6AE7FA2B518253E6E72CCB4B1CE71A5 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-6] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:08:54.474 -05:00 B6AE7FA2B518253E6E72CCB4B1CE71A5 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-6] com.quickpay.LoggingFilter               : Completed : 200
+12-07-2023 16:09:56.902 -05:00 8181DC8CF558CF0E0C1548D95D50CA50 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-8] com.quickpay.LoggingFilter               : POST : /login
+12-07-2023 16:09:56.939 -05:00 8181DC8CF558CF0E0C1548D95D50CA50 Youngjin POST /login  INFO 9135 --- [http-nio-9000-exec-8] com.quickpay.LoggingFilter               : Completed : 200
