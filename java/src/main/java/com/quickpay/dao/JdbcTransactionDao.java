@@ -24,7 +24,7 @@ public class JdbcTransactionDao implements TransactionDao {
         List<Transaction> transactions = new ArrayList<>();
         String sql = "SELECT * FROM transactions WHERE type_id = 2 AND (acting_id = ? OR target_id = ?);";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId, accountId);
-        while (result.next()) {
+        while (result.next()){
             Transaction transaction = mapRowToTransaction(result);
             transactions.add(transaction);
         }
@@ -101,6 +101,21 @@ public class JdbcTransactionDao implements TransactionDao {
                 transaction.getTargetId(), transaction.getAmount(), transaction.getCreatedDateTime(), transaction.getComment(), transaction.getTransactionId());
     }
 
+    @Override
+    public void acceptTransaction(Integer transactionId) {
+        String updateStatus = "UPDATE transactions "
+                + "SET status = 'Approved' "
+                + "WHERE transaction_id = ? ";
+        jdbcTemplate.update(updateStatus, transactionId);
+    }
+
+    @Override
+    public void rejectTransaction(Integer transactionId) {
+        String updateStatus = "UPDATE transactions "
+                + "SET status = 'Declined' "
+                + "WHERE transaction_id = ? ";
+        jdbcTemplate.update(updateStatus, transactionId);
+    }
 
     private Transaction mapRowToTransaction(SqlRowSet rowSet) {
         Transaction transaction = new Transaction();

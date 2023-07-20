@@ -20,4 +20,8 @@ public interface TransactionDao {
     void updateTransactionStatus(int transactionId, String status);
 
     void updateTransaction(Transaction transaction);
+
+    void acceptTransaction(Integer transactionId);
+
+    void rejectTransaction(Integer transactionId);
 }

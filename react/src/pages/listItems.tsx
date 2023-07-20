@@ -6,6 +6,8 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
+import { Link as RouterLink } from 'react-router-dom';
+
 
 export const mainListItems = (
     <React.Fragment>
@@ -21,12 +23,14 @@ export const mainListItems = (
             </ListItemIcon>
             <ListItemText primary="Transfer Requests" />
         </ListItemButton>
-        <ListItemButton>
-            <ListItemIcon>
-                <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary="Friends" />
-        </ListItemButton>
+        <React.Fragment>
+            <ListItemButton component={RouterLink} to="/friends">
+                <ListItemIcon>
+                    <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Friends" />
+            </ListItemButton>
+        </React.Fragment>
         <ListItemButton>
             <ListItemIcon>
                 <BarChartIcon />

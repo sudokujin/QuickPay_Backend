@@ -17,8 +17,8 @@ public class FriendsController {
         this.friendsDao = friendsDao;
     }
 
-    @GetMapping
-    public List<Friends> getFriendList(Integer accountId) {
+    @GetMapping("/{accountId}")
+    public List<Friends> getFriendList(@PathVariable Integer accountId) {
         return friendsDao.getFriendsByAccountId(accountId);
     }
 

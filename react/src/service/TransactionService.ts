@@ -35,5 +35,13 @@ export default {
 
     getNotPendingTransactions(accountId: number) {
         return http.get(`/transaction/notpending/${accountId}`);
+    },
+
+    acceptTransaction(transactionId: number) {
+        return http.put(`/transaction/accept/${transactionId}`);
+    },
+
+    rejectTransaction(transactionId: number) {
+        return http.put(`/transaction/reject/${transactionId}`);
     }
 }

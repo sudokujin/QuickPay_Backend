@@ -61,7 +61,7 @@ function SignIn() {
             console.log("accountId: " + account.accountId);
             console.log("accountBalance: " + account.balance);
 
-            navigate('/dashboard'); // Redirect to the dashboard page
+            navigate('/main'); // Redirect to the dashboard page
         } catch (error) {
             // Handle error
             console.log("error", error);

@@ -35,6 +35,10 @@ export default {
 
     getFriendRequestsByAccountId: function (accountId: number) {
         return http.get(`/friendrequest/${accountId}`);
+    },
+
+    getFriendsByAccountId: function (accountId: number) {
+        return http.get(`/friends/${accountId}`);
     }
 
 }

@@ -6,8 +6,8 @@ import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Title from './Title';
-import TransactionService from "../service/TransactionService.ts";
-import AccountService from "../service/AccountService.ts";
+import TransactionService from '../service/TransactionService.ts';
+import AccountService from '../service/AccountService.ts';
 
 function preventDefault(event: React.MouseEvent) {
     event.preventDefault();
@@ -25,40 +25,48 @@ interface Row {
 export default function Chart() {
     const [rows, setRows] = React.useState<Row[]>([]);
 
-    React.useEffect(() => {
-        const accountIdString = localStorage.getItem("accountId");
+    const fetchTransactions = React.useCallback(() => {
+        const accountIdString = localStorage.getItem('accountId');
         if (accountIdString !== null) {
             const accountId: number = parseInt(accountIdString);
             if (!isNaN(accountId)) {
                 AccountService.getAccountByAccountID(accountId)
                     .then(accountResponse => {
                         const account = accountResponse.data;
-                        console.log("Account:", account); // Log the account data
+                        console.log('Account:', account); // Log the account data
                         TransactionService.getPendingTransactions(account.accountId)
                             .then(response => {
-                                console.log("Transactions:", response.data); // Log the transactions data
+                                console.log('Transactions:', response.data); // Log the transactions data
                                 setRows(response.data);
                             })
                             .catch(error => console.error(error));
                     })
                     .catch(error => console.error(error));
             } else {
-                console.error("Account ID is not a number: ", accountIdString);
+                console.error('Account ID is not a number: ', accountIdString);
             }
         } else {
-            console.error("No account ID found in local storage.");
+            console.error('No account ID found in local storage.');
         }
     }, []);
+
+    React.useEffect(() => {
+        fetchTransactions();
+        const intervalId = setInterval(fetchTransactions, 5000); // Fetch transactions every 5 seconds
+        return () => {
+            clearInterval(intervalId); // Clear the interval on component unmount
+        };
+    }, [fetchTransactions]);
 
     const handleAcceptClick = (transactionId: number) => {
         // Call the acceptTransaction API endpoint and handle success/failure
         TransactionService.acceptTransaction(transactionId)
             .then(response => {
-                console.log("Transaction accepted:", response.data);
+                console.log('Transaction accepted:', response.data);
                 // Handle success
             })
             .catch(error => {
-                console.error("Error accepting transaction:", error);
+                console.error('Error accepting transaction:', error);
                 // Handle error
             });
     };
@@ -67,11 +75,11 @@ export default function Chart() {
         // Call the rejectTransaction API endpoint and handle success/failure
         TransactionService.rejectTransaction(transactionId)
             .then(response => {
-                console.log("Transaction rejected:", response.data);
+                console.log('Transaction rejected:', response.data);
                 // Handle success
             })
             .catch(error => {
-                console.error("Error rejecting transaction:", error);
+                console.error('Error rejecting transaction:', error);
                 // Handle error
             });
     };

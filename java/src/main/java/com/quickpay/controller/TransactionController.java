@@ -42,4 +42,15 @@ public class TransactionController {
     public void updateTransaction(Transaction transaction) {
         transactionDao.updateTransaction(transaction);
     }
+
+    @PutMapping("/accept/{transactionId}")
+    public void acceptTransaction(@PathVariable Integer transactionId) {
+        transactionDao.acceptTransaction(transactionId);
+    }
+
+    @PutMapping("/reject/{transactionId}")
+    public void rejectTransaction(@PathVariable Integer transactionId) {
+        transactionDao.rejectTransaction(transactionId);
+    }
+
 }
