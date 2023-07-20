@@ -20,7 +20,7 @@ public class JdbcFriendsDao implements FriendsDao {
     @Override
     public void addFriend(int accountId, int friendId) {
         String sql = "INSERT INTO friend (friend_account_id, friend_id) VALUES (?, ?);";
-        jdbcTemplate.update(sql, accountId, friendId);
+        jdbcTemplate.update(sql, friendId, accountId); // Swap the order of friendId and accountId
     }
 
     //Need to check SQL
@@ -50,6 +50,3 @@ public class JdbcFriendsDao implements FriendsDao {
     }
 
 }
-
-
-

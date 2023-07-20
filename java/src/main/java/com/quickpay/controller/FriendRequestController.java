@@ -1,6 +1,7 @@
 package com.quickpay.controller;
 
 import com.quickpay.dao.FriendRequestDao;
+import com.quickpay.dao.FriendsDao;
 import com.quickpay.model.FriendRequest;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +13,11 @@ import java.util.List;
 public class FriendRequestController {
 
     private FriendRequestDao friendRequestDao;
+    private FriendsDao friendsDao;
 
-    public FriendRequestController(FriendRequestDao friendRequestDao) {
+    public FriendRequestController(FriendRequestDao friendRequestDao, FriendsDao friendsDao) {
         this.friendRequestDao = friendRequestDao;
+        this.friendsDao = friendsDao; // Initialize the friendsDao field
     }
 
     @PostMapping
@@ -22,24 +25,23 @@ public class FriendRequestController {
         friendRequestDao.sendFriendRequest(accountId, friendId, status);
     }
 
-    @PutMapping("/accept")
-    public void acceptFriendRequest(Integer accountId, Integer friendId) {
-        friendRequestDao.acceptFriendRequest(accountId, friendId);
+    @PutMapping("/accept/{requestId}")
+    public void acceptFriendRequest(@PathVariable Integer requestId) {
+        friendRequestDao.acceptFriendRequest(requestId);
+        int senderId = friendRequestDao.getFriendRequest(requestId).getSenderId();
+        int receiverId = friendRequestDao.getFriendRequest(requestId).getReceiverId();
+
+        friendsDao.addFriend(senderId, receiverId);
     }
 
-    @PutMapping("/reject")
-    public void rejectFriendRequest(Integer accountId, Integer friendId) {
-        friendRequestDao.rejectFriendRequest(accountId, friendId);
+    @PutMapping("/reject/{requestId}")
+    public void rejectFriendRequest(@PathVariable Integer requestId) {
+        friendRequestDao.rejectFriendRequest(requestId);
     }
 
     @DeleteMapping
     public void deleteFriendRequest(Integer accountId, Integer friendId) {
         friendRequestDao.deleteFriendRequest(accountId, friendId);
-    }
-
-    @GetMapping
-    public String getFriendRequestStatus(Integer accountId, Integer friendId) {
-        return friendRequestDao.getFriendRequestStatus(accountId, friendId);
     }
 
     @GetMapping("/{accountId}")

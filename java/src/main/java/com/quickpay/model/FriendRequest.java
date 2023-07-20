@@ -1,7 +1,7 @@
 package com.quickpay.model;
 
 public class FriendRequest {
-    private int id;
+    private int requestId;
     private int senderId;
     private int receiverId;
     private String status;
@@ -15,12 +15,12 @@ public class FriendRequest {
         this.status = status;
     }
 
-    public int getId() {
-        return id;
+    public int getRequestId() {
+        return requestId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRequestId(int requestId) {
+        this.requestId = requestId;
     }
 
     public int getSenderId() {

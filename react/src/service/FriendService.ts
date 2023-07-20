@@ -21,19 +21,19 @@ export default {
         return http.post('/friendrequest', accountId, friendId, status);
     },
 
-    acceptFriendRequest: function (accountId: number, friendId: number, status: string) {
-        return http.put('/friendrequest/accept', accountId, friendId, status);
+    acceptFriendRequest: function (requestId: number) {
+        return http.put(`/friendrequest/accept/${requestId}`);
     },
 
-    rejectFriendRequest: function (accountId: number, friendId: number, status: string) {
-        return http.put('/friendrequest/reject', accountId, friendId, status);
+    rejectFriendRequest: function (requestId: number) {
+        return http.put(`/friendrequest/reject/${requestId}`);
     },
 
     deleteFriendRequest: function (accountId: number, friendId: number) {
         return http.delete('/friendrequest', accountId, friendId);
     },
 
-    getFriendRequestsByAccountId: function (accountId: number) {
+    getFriendRequests: function (accountId: string) {
         return http.get(`/friendrequest/${accountId}`);
     },
 

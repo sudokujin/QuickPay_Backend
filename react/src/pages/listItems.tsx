@@ -17,11 +17,11 @@ export const mainListItems = (
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton component={RouterLink} to="/main">
             <ListItemIcon>
                 <ShoppingCartIcon />
             </ListItemIcon>
-            <ListItemText primary="Transfer Requests" />
+            <ListItemText primary="Main Page" />
         </ListItemButton>
         <React.Fragment>
             <ListItemButton component={RouterLink} to="/friends">
@@ -31,12 +31,6 @@ export const mainListItems = (
                 <ListItemText primary="Friends" />
             </ListItemButton>
         </React.Fragment>
-        <ListItemButton>
-            <ListItemIcon>
-                <BarChartIcon />
-            </ListItemIcon>
-            <ListItemText primary="Friend Requests" />
-        </ListItemButton>
 
     </React.Fragment>
 );

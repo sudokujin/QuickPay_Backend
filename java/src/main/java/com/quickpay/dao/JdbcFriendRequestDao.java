@@ -23,14 +23,14 @@ public class JdbcFriendRequestDao implements FriendRequestDao{
         jdbcTemplate.update(sql, senderId, receiverId, status);
     }
     @Override
-    public void acceptFriendRequest(int senderId, int receiverId) {
-        String sql = "UPDATE friend_request SET status = 'Accepted' WHERE sender_id = ? AND receiver_id = ?;";
-        jdbcTemplate.update(sql, senderId, receiverId);
+    public void acceptFriendRequest(Integer requestId) {
+        String sql = "UPDATE friend_request SET status = 'Accepted' WHERE request_id = ?;";
+        jdbcTemplate.update(sql, requestId);
     }
     @Override
-    public void rejectFriendRequest(int senderId, int receiverId) {
-        String sql = "UPDATE friend_request SET status = 'Rejected' WHERE sender_id = ? AND receiver_id = ?;";
-        jdbcTemplate.update(sql, senderId, receiverId);
+    public void rejectFriendRequest(Integer requestId) {
+        String sql = "UPDATE friend_request SET status = 'Rejected' WHERE request_id = ?;";
+        jdbcTemplate.update(sql, requestId);
     }
     @Override
     public void deleteFriendRequest(int senderId, int receiverId) {
@@ -68,12 +68,24 @@ public class JdbcFriendRequestDao implements FriendRequestDao{
         return friendRequests;
     }
 
+    @Override
+    public FriendRequest getFriendRequest(Integer requestId) {
+        String sql = "SELECT * FROM friend_request WHERE request_id = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, requestId);
+        if (result.next()){
+            return mapRowToFriendRequest(result);
+        }
+        return null;
+    }
+
 
     private FriendRequest mapRowToFriendRequest(SqlRowSet row) {
         FriendRequest friendRequest = new FriendRequest();
+        friendRequest.setRequestId(row.getInt("request_id"));
         friendRequest.setSenderId(row.getInt("sender_id"));
         friendRequest.setReceiverId(row.getInt("receiver_id"));
         friendRequest.setStatus(row.getString("status"));
         return friendRequest;
     }
 }
+

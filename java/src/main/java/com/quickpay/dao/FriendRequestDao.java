@@ -7,9 +7,9 @@ import java.util.List;
 public interface FriendRequestDao {
     void sendFriendRequest(int senderId, int receiverId, String status);
 
-    void acceptFriendRequest(int senderId, int receiverId);
+    void acceptFriendRequest(Integer requestId);
 
-    void rejectFriendRequest(int senderId, int receiverId);
+    void rejectFriendRequest(Integer requestId);
 
     void deleteFriendRequest(int senderId, int receiverId);
 
@@ -18,4 +18,6 @@ public interface FriendRequestDao {
     List<FriendRequest> getFriendRequestsByAccountId(Integer accountId);
 
     List<FriendRequest> getAllFriendRequests(Integer accountId);
+
+    FriendRequest getFriendRequest(Integer requestId);
 }
