@@ -34,12 +34,12 @@ public class TransactionController {
     }
 
     @PostMapping
-    public void createTransaction(Transaction transaction) {
+    public void createTransaction(@RequestBody Transaction transaction) {
         transactionDao.createTransaction(transaction);
     }
 
     @PutMapping
-    public void updateTransaction(Transaction transaction) {
+    public void updateTransaction(@RequestBody Transaction transaction) {
         transactionDao.updateTransaction(transaction);
     }
 

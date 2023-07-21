@@ -21,8 +21,8 @@ public class FriendRequestController {
     }
 
     @PostMapping
-    public void createFriendRequest(Integer accountId, Integer friendId, String status) {
-        friendRequestDao.sendFriendRequest(accountId, friendId, status);
+    public void createFriendRequest(@RequestBody FriendRequest friendRequest) {
+        friendRequestDao.sendFriendRequest(friendRequest.getSenderId(), friendRequest.getReceiverId(), friendRequest.getStatus());
     }
 
     @PutMapping("/accept/{requestId}")

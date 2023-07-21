@@ -8,29 +8,32 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import { Link as RouterLink } from 'react-router-dom';
 
-
 export const mainListItems = (
-    <React.Fragment>
-        <ListItemButton>
-            <ListItemIcon>
-                <DashboardIcon />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-        </ListItemButton>
-        <ListItemButton component={RouterLink} to="/main">
-            <ListItemIcon>
-                <ShoppingCartIcon />
-            </ListItemIcon>
-            <ListItemText primary="Main Page" />
-        </ListItemButton>
-        <React.Fragment>
-            <ListItemButton component={RouterLink} to="/friends">
-                <ListItemIcon>
-                    <PeopleIcon />
-                </ListItemIcon>
-                <ListItemText primary="Friends" />
-            </ListItemButton>
-        </React.Fragment>
-
-    </React.Fragment>
+  <React.Fragment>
+    <ListItemButton component={RouterLink} to="/">
+      <ListItemIcon>
+        <DashboardIcon />
+      </ListItemIcon>
+      <ListItemText primary="Dashboard" />
+    </ListItemButton>
+    <ListItemButton component={RouterLink} to="/main">
+      <ListItemIcon>
+        <ShoppingCartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Main Page" />
+    </ListItemButton>
+    <ListItemButton component={RouterLink} to="/friends">
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      <ListItemText primary="Friends" />
+    </ListItemButton>
+    <ListItemButton component={RouterLink} to="/pay-and-request"> {/* Corrected the path here */}
+      <ListItemIcon>
+        <BarChartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Pay & Request" />
+    </ListItemButton>
+  </React.Fragment>
 );
+

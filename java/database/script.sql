@@ -49,6 +49,7 @@ CREATE TABLE friend(
                        CONSTRAINT PK_friend_id PRIMARY KEY (id),
                        CONSTRAINT FK_friend_friend_account_id FOREIGN KEY (friend_account_id) REFERENCES account (account_id),
                        CONSTRAINT FK_friend_friend_id FOREIGN KEY (friend_id) REFERENCES account (account_id)
+              
 );
 
 CREATE TABLE transactions(
@@ -67,3 +68,4 @@ CREATE TABLE transactions(
 );
 
 COMMIT TRANSACTION;
+

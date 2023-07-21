@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import MainPage from './MainPage';
-import FriendsList from './FriendsList';
-import FriendRequestComponent from './FriendRequestComponent';
+import FriendsList from '../Components/FriendsList.tsx';
+import FriendRequestComponent from '../Components/FriendRequestComponent.tsx';
+import CreateFriendRequestComponent from '../Components/CreateFriendRequest.tsx';
 import FriendService from "../service/FriendService";
 
 interface FriendRequest {
@@ -11,52 +12,39 @@ interface FriendRequest {
     status: string;
 }
 
+interface Friend {
+    id: number;
+    accountId: number;
+    friendId: number;
+}
+
 const FriendsPage = () => {
     const [friendRequests, setFriendRequests] = useState<FriendRequest[]>([]);
-    const [friends, setFriends] = useState<FriendRequest[]>([]);
+    const [friends, setFriends] = useState<Friend[]>([]);
+    const accountId = localStorage.getItem('accountId');
 
     useEffect(() => {
-        const fetchFriendRequests = async () => {
-            try {
-                const accountId = localStorage.getItem('accountId');
-                const response = await FriendService.getFriendRequests(accountId);
-                const requests: FriendRequest[] = response.data; // Assuming the response data is an array of FriendRequest objects
-                setFriendRequests(requests);
-            } catch (error) {
-                console.log('Error fetching friend requests:', error);
-            }
-        };
-
-        const fetchFriends = async () => {
-            try {
-                const accountId = localStorage.getItem('accountId');
-                const response = await FriendService.getFriendsByAccountId(accountId);
-                const friends: FriendRequest[] = response.data; // Assuming the response data is an array of FriendRequest objects
-                setFriends(friends);
-            } catch (error) {
-                console.log('Error fetching friends:', error);
-            }
-        };
-
-        fetchFriendRequests();
-        fetchFriends();
+        fetchFriendRequestsAndFriends();
     }, []);
+
+    const fetchFriendRequestsAndFriends = async () => {
+        try {
+            if (accountId) {
+                const responseFriendRequests = await FriendService.getFriendRequests(parseInt(accountId));
+                setFriendRequests(responseFriendRequests.data);
+
+                const responseFriends = await FriendService.getFriendsByAccountId(parseInt(accountId));
+                setFriends(responseFriends.data);
+            }
+        } catch (error) {
+            console.log('Error fetching data:', error);
+        }
+    };
 
     const handleAccept = async (requestId: number) => {
         try {
-            console.log('Accepting friend request with requestId:', requestId);
             await FriendService.acceptFriendRequest(requestId);
-            // Update the friendRequests state to reflect the accepted request
-            setFriendRequests((prevState) => {
-                return prevState.map((request) => {
-                    if (request.requestId === requestId) {
-                        return { ...request, status: 'Accepted' };
-                    }
-                    return request;
-                });
-            });
-            // Fetch updated friends list
-            fetchFriends();
+            fetchFriendRequestsAndFriends(); // Refresh the friend requests and friends list after accepting the request
         } catch (error) {
             console.log('Error accepting friend request:', error);
         }
@@ -64,25 +52,40 @@ const FriendsPage = () => {
 
     const handleReject = async (requestId: number) => {
         try {
-            console.log('Rejecting friend request with requestId:', requestId);
             await FriendService.rejectFriendRequest(requestId);
-            // Update the friendRequests state to reflect the rejected request
-            setFriendRequests((prevState) => {
-                return prevState.filter((request) => request.requestId !== requestId);
-            });
+            fetchFriendRequestsAndFriends(); // Refresh the friend requests and friends list after rejecting the request
         } catch (error) {
             console.log('Error rejecting friend request:', error);
         }
     };
 
+    const handleFriendRequestCreate = () => {
+        fetchFriendRequestsAndFriends();
+    };
+
+    // Filter receiver's friend requests
+    const receiverFriendRequests = friendRequests.filter(request => request.receiverId === parseInt(accountId));
+
+    // Filter unique friend IDs to avoid duplication
+    const uniqueFriendIds = new Set<number>();
+    const uniqueFriends = friends.filter(friend => {
+        if (!uniqueFriendIds.has(friend.accountId) && !uniqueFriendIds.has(friend.friendId)) {
+            uniqueFriendIds.add(friend.accountId);
+            uniqueFriendIds.add(friend.friendId);
+            return true;
+        }
+        return false;
+    });
+
     return (
         <MainPage>
-            <FriendsList friends={friends} />
+            <CreateFriendRequestComponent onFriendRequestCreate={handleFriendRequestCreate} />
+            <FriendsList friends={uniqueFriends} />
             <div>
                 <h2>Friend Requests</h2>
-                {friendRequests.map((request) => (
+                {receiverFriendRequests.map((request) => (
                     <FriendRequestComponent
-                        key={`${request.requestId}-${request.senderId}`}
+                        key={request.requestId}
                         friendRequest={request}
                         onAccept={handleAccept}
                         onReject={handleReject}
