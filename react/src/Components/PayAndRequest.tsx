@@ -10,13 +10,14 @@ import {
 } from '@mui/material';
 import { Transaction } from '../models/Transaction';
 import TransactionService from '../service/TransactionService';
-import Decimal from 'decimal.js'; // Import the Decimal class
+import Decimal from 'decimal.js';
+import AccountService from "../service/AccountService"; // Import the Decimal class
 
 const PayAndRequest = () => {
     const [selectedOption, setSelectedOption] = useState('pay');
     const [amount, setAmount] = useState('');
-    const [description, setDescription] = useState('');
-    const [targetId, setTargetId] = useState(''); // State for the targetId input
+    const [comment, setDescription] = useState('');
+    const [targetId, setTargetId] = useState('');
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
@@ -27,19 +28,45 @@ const PayAndRequest = () => {
 
         try {
             const actingId = parseInt(localStorage.getItem('accountId') || '0', 10);
-            const transaction: Transaction = {
-                actingId: actingId,
-                targetId: parseInt(targetId || '0', 10),
-                amount: new Decimal(amount),
-                status: selectedOption === 'request' ? 'Pending' : 'Approved', // Set status conditionally
+
+            // Validate the form fields
+            if (!amount || !comment || !targetId) {
+                throw new Error('Please fill in all required fields.');
+            }
+
+            // Convert the amount to a Decimal instance
+            const transactionAmount = new Decimal(amount);
+            if (isNaN(transactionAmount)) {
+                throw new Error('Invalid amount value: ' + amount);
+            }
+
+            // Fetch user's account balance from the server
+            let userBalanceResponse;
+            try {
+                userBalanceResponse = await AccountService.getBalance(actingId);
+            } catch (error) {
+                console.error('Error getting user balance:', error);
+                throw new Error('Invalid response received from the server while getting user balance.');
+            }
+
+            // Check if the user has enough balance to make the payment
+            if (selectedOption === 'pay' && userBalanceResponse.data.balance < transactionAmount.toNumber()) {
+                throw new Error('Insufficient balance for payment.');
+            }
+
+            // Create the new transaction
+            const transaction = {
+                actingId,
+                targetId,
+                amount,
+                status: selectedOption === 'request' ? 'Pending' : 'Approved',
                 typeId: selectedOption === 'pay' ? 1 : 2,
-                comment: description,
+                comment,
                 createdDateTime: new Date().toISOString(),
             };
 
             // Call the transaction service to create the new transaction
             const createdTransaction = await TransactionService.createTransaction(transaction);
-            console.log('Created Transaction:', createdTransaction);
 
             // Clear the form fields after submitting
             setAmount('');
@@ -54,17 +81,6 @@ const PayAndRequest = () => {
         <Box sx={{ p: 2 }}>
             <h1>Pay & Request</h1>
             <form onSubmit={handleSubmit}>
-                <FormControl component="fieldset">
-                    <RadioGroup
-                        row
-                        name="payOrRequest"
-                        value={selectedOption}
-                        onChange={handleOptionChange}
-                    >
-                        <FormControlLabel value="pay" control={<Radio />} label="Pay" />
-                        <FormControlLabel value="request" control={<Radio />} label="Request" />
-                    </RadioGroup>
-                </FormControl>
                 {/* New input field for the targetId */}
                 <TextField
                     fullWidth
@@ -75,6 +91,7 @@ const PayAndRequest = () => {
                     onChange={(e) => setTargetId(e.target.value)}
                     required
                 />
+                {/* New input field for the amount */}
                 <TextField
                     fullWidth
                     type="number"
@@ -84,14 +101,22 @@ const PayAndRequest = () => {
                     onChange={(e) => setAmount(e.target.value)}
                     required
                 />
+                {/* New input field for the description */}
                 <TextField
                     fullWidth
-                    label="Description"
+                    label="Comment"
                     variant="outlined"
-                    value={description}
+                    value={comment}
                     onChange={(e) => setDescription(e.target.value)}
                     required
                 />
+                {/* Radio button for selecting between pay and request */}
+                <FormControl component="fieldset">
+                    <RadioGroup row name="payOrRequest" value={selectedOption} onChange={handleOptionChange}>
+                        <FormControlLabel value="pay" control={<Radio />} label="Pay" />
+                        <FormControlLabel value="request" control={<Radio />} label="Request" />
+                    </RadioGroup>
+                </FormControl>
                 <Button type="submit" variant="contained" sx={{ mt: 2 }}>
                     Submit
                 </Button>

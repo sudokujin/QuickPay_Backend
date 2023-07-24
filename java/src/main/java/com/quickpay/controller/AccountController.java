@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.PermitAll;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 
 @PermitAll
 @CrossOrigin
@@ -18,7 +19,6 @@ public class AccountController {
     public AccountController(AccountDao accountDao) {
         this.accountDao = accountDao;
     }
-
 
     @PermitAll
     @GetMapping("/{accountId}")
@@ -42,10 +42,14 @@ public class AccountController {
         accountDao.updateBalance(balance, accountId);
     }
 
+    @GetMapping("/balance/{accountId}")
+    public BigDecimal getBalance(@PathVariable Integer accountId) throws SQLException {
+        return accountDao.getBalance(accountId);
+    }
+
     @DeleteMapping
     public void deleteAccount(@RequestBody Account account) {
         accountDao.deleteAccount(account.getAccountId());
     }
 }
-
 

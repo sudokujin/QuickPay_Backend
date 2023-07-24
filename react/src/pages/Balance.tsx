@@ -1,19 +1,22 @@
-import * as React from 'react';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import Title from './Title';
 import AccountService from '../service/AccountService.ts';
+import React from "react";
 
 function preventDefault(event: React.MouseEvent) {
     event.preventDefault();
 }
 
 export default function Balance() {
-    const [balance, setBalance] = React.useState(localStorage.getItem('balance') || '');
+    const [balance, setBalance] = React.useState(
+        parseFloat(localStorage.getItem('balance') || '0.00')
+    );
     const [isEditing, setIsEditing] = React.useState(false);
 
     const handleBalanceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setBalance(event.target.value);
+        const inputValue = parseFloat(event.target.value);
+        setBalance(isNaN(inputValue) ? 0.00 : inputValue);
     };
 
     const handleEditClick = () => {
@@ -22,12 +25,11 @@ export default function Balance() {
 
     const handleSaveClick = () => {
         setIsEditing(false);
-        const balanceValue = parseFloat(balance.replace(/,/g, '')); // Parse the balance value as a float and remove commas
-        const updatedBalance = Math.round(balanceValue); // Convert the balance value to an integer
+        const updatedBalance = balance.toFixed(2); // Convert the balance value to a string with two decimal places
 
         const accountId = localStorage.getItem('accountId');
         if (accountId !== null && !isNaN(Number(accountId))) {
-            localStorage.setItem('balance', updatedBalance.toString());
+            localStorage.setItem('balance', updatedBalance);
             AccountService.updateBalance(updatedBalance, Number(accountId))
                 .then(response => {
                     console.log("Balance updated successfully:", response.data);
@@ -48,7 +50,8 @@ export default function Balance() {
             <Title>Balance</Title>
             {isEditing ? (
                 <input
-                    type="text"
+                    type="number"
+                    step="0.01" // Allow decimals with two decimal places
                     value={balance}
                     onChange={handleBalanceChange}
                     onBlur={handleSaveClick}
@@ -56,7 +59,7 @@ export default function Balance() {
                 />
             ) : (
                 <Typography component="p" variant="h4" onClick={handleEditClick}>
-                    {balance}
+                    {balance.toFixed(2)} {/* Display the balance with two decimal places */}
                 </Typography>
             )}
             <Typography color="text.secondary" sx={{ flex: 1 }}>

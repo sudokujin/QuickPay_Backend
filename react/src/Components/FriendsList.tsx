@@ -18,27 +18,32 @@ const FriendsList: React.FC = () => {
     const [friends, setFriends] = useState<Friend[]>([]);
     const [uniqueFriendIds, setUniqueFriendIds] = useState<Set<number>>(new Set());
 
-    useEffect(() => {
-        const fetchFriends = async () => {
-            try {
-                const accountId = localStorage.getItem('accountId');
-                if (accountId) {
-                    const response = await FriendService.getFriendsByAccountId(parseInt(accountId));
-                    setFriends(response.data);
+    const fetchFriends = async () => {
+        try {
+            const accountId = localStorage.getItem('accountId');
+            if (accountId) {
+                const response = await FriendService.getFriendsByAccountId(parseInt(accountId));
+                setFriends(response.data);
 
-                    // Collect unique Friend IDs
-                    const uniqueIds = new Set<number>();
-                    response.data.forEach((friend) => {
-                        uniqueIds.add(friend.friendId);
-                    });
-                    setUniqueFriendIds(uniqueIds);
-                }
-            } catch (error) {
-                console.error("Error fetching friends:", error);
+                // Collect unique Friend IDs
+                const uniqueIds = new Set<number>();
+                response.data.forEach((friend) => {
+                    uniqueIds.add(friend.friendId);
+                });
+                setUniqueFriendIds(uniqueIds);
             }
-        };
+        } catch (error) {
+            console.error("Error fetching friends:", error);
+        }
+    };
 
+    useEffect(() => {
         fetchFriends();
+        const intervalId = setInterval(fetchFriends, 5000); // Fetch data every 5 seconds
+
+        return () => {
+            clearInterval(intervalId); // Clear the interval on component unmount
+        };
     }, []);
 
     if (friends.length === 0) {

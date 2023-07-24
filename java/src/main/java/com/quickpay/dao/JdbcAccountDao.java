@@ -32,7 +32,6 @@ public class JdbcAccountDao implements AccountDao {
     }
 
 
-
 //    @Override
 //    public Account getAccountByUserId(int userId) {
 //        Account account = null;
@@ -96,4 +95,3 @@ public class JdbcAccountDao implements AccountDao {
         return account;
     }
 }
-

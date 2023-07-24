@@ -79,9 +79,11 @@ public class JdbcTransactionDao implements TransactionDao {
 
     @Override
     public void createTransaction(Transaction transaction) {
-        String sql = "INSERT INTO transactions(type_id, status, acting_id, target_id, amount, date_time, comment) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO transactions(type_id, status, acting_id, target_id, amount, date_time, comment) " +
+                "VALUES (?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql, transaction.getTypeId(), transaction.getStatus(), transaction.getActingId(),
-                transaction.getTargetId(), transaction.getAmount(), transaction.getCreatedDateTime(), transaction.getComment());
+                transaction.getTargetId(), transaction.getAmount(), transaction.getCreatedDateTime(),
+                transaction.getComment());
     }
     @Override
     public void updateTransactionStatus(int transactionId, String status) {

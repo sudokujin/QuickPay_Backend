@@ -1,5 +1,6 @@
 import axios from 'axios';
-
+import { Decimal } from 'decimal.js';
+import AccountService from './AccountService';
 const http = axios.create({
     baseURL: 'http://localhost:9000',
 });
@@ -22,13 +23,34 @@ http.interceptors.request.use(
     }
 );
 
+let balance;
 export default {
     createAccount(account) {
         return http.post('/account', account);
     },
+    async updateBalance(balance: Decimal, accountId: number) {
+        balance = new Decimal(balance);
 
-    updateBalance(balance : number, accountId : number) {
-        return http.put(`/account/${accountId}`, balance, accountId);
+        try {
+            // Make the API call to update the balance on the server using the provided service call
+            const response = await http.put(`/account/${accountId}`, {
+                balance: new Decimal(balance), // Send the balance as a BigDecimal object
+            });
+
+            // Check if the request was successful
+            if (response.status !== 200) {
+                throw new Error('Failed to update balance on the server.');
+            }
+
+            // Balance updated successfully
+            console.log('Balance updated successfully.');
+        } catch (error) {
+            console.error('Error updating balance:', error);
+            throw error;
+        }
+    },
+    getBalance(accountId : number) {
+        return http.get(`/account/balance/${accountId}`);
     },
 
     getAccountByAccountID(accountId) {
