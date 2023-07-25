@@ -69,3 +69,23 @@ CREATE TABLE transactions(
 
 COMMIT TRANSACTION;
 
+
+
+ALTER TABLE friend DROP CONSTRAINT IF EXISTS FK_friend_friend_account_id;
+ALTER TABLE friend DROP CONSTRAINT IF EXISTS FK_friend_friend_id;
+
+-- Next, add a composite column for the UNIQUE constraint
+ALTER TABLE friend
+ADD COLUMN friend_pair INT GENERATED ALWAYS AS (LEAST(friend_account_id, friend_id)) STORED,
+ADD COLUMN friend_pair_max INT GENERATED ALWAYS AS (GREATEST(friend_account_id, friend_id)) STORED;
+
+-- Then, add the UNIQUE constraint using the composite columns
+ALTER TABLE friend
+ADD CONSTRAINT UQ_friend_pair UNIQUE (friend_pair, friend_pair_max);
+
+-- Finally, re-add the foreign key constraints
+ALTER TABLE friend
+ADD CONSTRAINT FK_friend_friend_account_id FOREIGN KEY (friend_account_id) REFERENCES account (account_id),
+ADD CONSTRAINT FK_friend_friend_id FOREIGN KEY (friend_id) REFERENCES account (account_id);
+
+
