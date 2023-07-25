@@ -88,4 +88,14 @@ ALTER TABLE friend
 ADD CONSTRAINT FK_friend_friend_account_id FOREIGN KEY (friend_account_id) REFERENCES account (account_id),
 ADD CONSTRAINT FK_friend_friend_id FOREIGN KEY (friend_id) REFERENCES account (account_id);
 
+INSERT INTO users (username,password_hash,role, account_id, email, birth_date, first_name, last_name, phone_number, address, city, state, zipcode)
+VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER', 1, 'test@gmail.com', '1986-12-10', 'Test', 'Example', '123-123-1234', '10 Test Street', 'Tampa', 'Florida', '12345');
 
+INSERT INTO users (username,password_hash,role, account_id, email, birth_date, first_name, last_name, phone_number, address, city, state, zipcode)
+VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN', 2,'test@gmail.com', '1986-12-10', 'Test', 'Example', '123-123-1234', '10 Test Street', 'Tampa', 'Florida', '12345');
+
+INSERT INTO account(account_id, balance)
+VALUES (1, 0);
+
+INSERT INTO account(account_id, balance)
+VALUES(2, 0);
