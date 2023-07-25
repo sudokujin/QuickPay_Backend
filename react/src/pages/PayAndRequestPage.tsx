@@ -1,12 +1,14 @@
 import React from 'react';
 import PayAndRequest from '../Components/PayAndRequest';
+import MainPage from "./MainPage.tsx";
 
 const PayAndRequestPage: React.FC = () => {
     return (
-        <div>
-            <h1 style={{ color: 'blue' }}>Pay & Request Page</h1>
+        <MainPage>
+        <div style={{ color: 'blue' }}>
             <PayAndRequest />
         </div>
+            </MainPage>
     );
 };
 

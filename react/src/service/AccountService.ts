@@ -29,12 +29,13 @@ export default {
         return http.post('/account', account);
     },
     async updateBalance(balance: Decimal, accountId: number) {
-        balance = new Decimal(balance);
+        const stringBalance = balance.toString();
 
         try {
-            // Make the API call to update the balance on the server using the provided service call
-            const response = await http.put(`/account/${accountId}`, {
-                balance: new Decimal(balance), // Send the balance as a BigDecimal object
+            const response = await http.put(`/account/${accountId}`, stringBalance, {
+                headers: {
+                    'Content-Type': 'text/plain'
+                }
             });
 
             // Check if the request was successful

@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Title from './Title';
 import TransactionService from '../service/TransactionService.ts';
 import AccountService from '../service/AccountService.ts';
-
+import {useCallback, useEffect, useState} from 'react';
 function preventDefault(event: React.MouseEvent) {
     event.preventDefault();
 }
@@ -23,17 +23,22 @@ interface Row {
 }
 
 export default function PendingTransactionTable() {
-    const [rows, setRows] = React.useState<Row[]>([]);
+    const [rows, setRows] = useState<Row[]>([]);
+    const [accountBalance, setAccountBalance] = useState<number>(0);
 
-    const fetchTransactions = React.useCallback(() => {
+    const fetchTransactions = useCallback(() => {
         const accountIdString = localStorage.getItem('accountId');
         if (accountIdString !== null) {
             const accountId: number = parseInt(accountIdString);
             if (!isNaN(accountId)) {
+                // Fetch user's account balance
                 AccountService.getAccountByAccountID(accountId)
                     .then(accountResponse => {
                         const account = accountResponse.data;
                         console.log('Account:', account); // Log the account data
+                        setAccountBalance(account.balance);
+
+                        // Fetch pending transactions
                         TransactionService.getPendingTransactions(account.accountId)
                             .then(response => {
                                 console.log('Transactions:', response.data); // Log the transactions data
@@ -50,20 +55,29 @@ export default function PendingTransactionTable() {
         }
     }, []);
 
-    React.useEffect(() => {
+    useEffect(() => {
         fetchTransactions();
         const intervalId = setInterval(fetchTransactions, 5000); // Fetch transactions every 5 seconds
         return () => {
             clearInterval(intervalId); // Clear the interval on component unmount
         };
     }, [fetchTransactions]);
-
-    const handleAcceptClick = (transactionId: number) => {
+    const handleAcceptClick = (transactionId: number, amount: number) => {
         // Call the acceptTransaction API endpoint and handle success/failure
         TransactionService.acceptTransaction(transactionId)
             .then(response => {
                 console.log('Transaction accepted:', response.data);
-                // Handle success
+                // Handle success: Update balance and fetch updated transactions
+                const newBalance = accountBalance - amount;
+                const accountIdString = localStorage.getItem('accountId');
+                const accountId = parseInt(accountIdString!);
+                AccountService.updateBalance(newBalance, accountId)
+                    .then(() => {
+                        fetchTransactions(); // Fetch updated transactions and balance
+                    })
+                    .catch(error => {
+                        console.error('Error updating balance:', error);
+                    });
             })
             .catch(error => {
                 console.error('Error accepting transaction:', error);
@@ -120,9 +134,6 @@ export default function PendingTransactionTable() {
                     ))}
                 </TableBody>
             </Table>
-            <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-                See more orders
-            </Link>
         </React.Fragment>
     );
 }

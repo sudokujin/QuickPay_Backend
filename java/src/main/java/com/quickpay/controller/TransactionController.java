@@ -60,6 +60,8 @@ public class TransactionController {
             transaction.setStatus("Rejected");
             transaction.setComment("Not enough balance");
             transactionDao.createTransaction(transaction);
+        } else {
+            transactionDao.createTransaction(transaction);
         }
     }
 

@@ -1,74 +1,81 @@
-import Link from '@mui/material/Link';
+import React, { useEffect, useState } from "react";
+import { Decimal } from 'decimal.js';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Title from './Title';
-import AccountService from '../service/AccountService.ts';
-import React from "react";
-
-function preventDefault(event: React.MouseEvent) {
-    event.preventDefault();
-}
+import AccountService from '../service/AccountService';
 
 export default function Balance() {
-    const [balance, setBalance] = React.useState(
-        parseFloat(localStorage.getItem('balance') || '0.00')
+    const [balance, setBalance] = useState(
+        new Decimal(localStorage.getItem('balance') || '0.00')
     );
-    const [isEditing, setIsEditing] = React.useState(false);
 
-    const handleBalanceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const inputValue = parseFloat(event.target.value);
-        setBalance(isNaN(inputValue) ? 0.00 : inputValue);
+    // Handler to increase balance
+    const handleIncreaseClick = () => {
+        const newBalance = balance.plus(1);
+        updateBalance(newBalance);
     };
 
-    const handleEditClick = () => {
-        setIsEditing(true);
-    };
-
-    const handleSaveClick = () => {
-        setIsEditing(false);
-        const updatedBalance = balance.toFixed(2); // Convert the balance value to a string with two decimal places
-
-        const accountId = localStorage.getItem('accountId');
-        if (accountId !== null && !isNaN(Number(accountId))) {
-            localStorage.setItem('balance', updatedBalance);
-            AccountService.updateBalance(updatedBalance, Number(accountId))
-                .then(response => {
-                    console.log("Balance updated successfully:", response.data);
-                    // Handle success
-                })
-                .catch(error => {
-                    console.error("Error updating balance:", error);
-                    // Handle error
-                });
-        } else {
-            console.error("Invalid accountId in localStorage:", accountId);
-            // Handle the case when accountId is invalid or not found
+    // Handler to decrease balance
+    const handleDecreaseClick = () => {
+        if (balance.greaterThanOrEqualTo(1)) {  // To ensure balance does not go negative
+            const newBalance = balance.minus(1);
+            updateBalance(newBalance);
         }
     };
+
+    const updateBalance = async (newBalance: Decimal) => {
+        const accountId = localStorage.getItem('accountId');
+        if (accountId !== null && !isNaN(Number(accountId))) {
+            // Make the API call to update the balance on the server
+            try {
+                await AccountService.updateBalance(newBalance, Number(accountId));
+                console.log("Balance updated successfully.");
+
+                // Update the balance in the state if server update is successful
+                setBalance(newBalance);
+            } catch (error) {
+                console.error("Error updating balance:", error);
+            }
+        } else {
+            console.error("Invalid accountId in localStorage:", accountId);
+        }
+    };
+
+    useEffect(() => {
+        const fetchBalance = async () => {
+            try {
+                const accountResponse = await AccountService.getAccountByAccountID(parseInt(localStorage.getItem('accountId') || '0'));
+                console.log("accountResponse:",  accountResponse);
+
+                const account = {
+                    accountId: parseInt(accountResponse.data?.accountId),
+                    balance: new Decimal(accountResponse.data?.balance)
+                };
+
+                localStorage.setItem('balance', account.balance.toString());
+                setBalance(account.balance);
+            } catch (error) {
+                console.error('Error fetching balance:', error);
+            }
+        };
+
+        const intervalId = setInterval(fetchBalance, 5000);
+
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, []);
 
     return (
         <React.Fragment>
             <Title>Balance</Title>
-            {isEditing ? (
-                <input
-                    type="number"
-                    step="0.01" // Allow decimals with two decimal places
-                    value={balance}
-                    onChange={handleBalanceChange}
-                    onBlur={handleSaveClick}
-                    autoFocus
-                />
-            ) : (
-                <Typography component="p" variant="h4" onClick={handleEditClick}>
-                    {balance.toFixed(2)} {/* Display the balance with two decimal places */}
-                </Typography>
-            )}
-            <Typography color="text.secondary" sx={{ flex: 1 }}>
-                on 15 March, 2019
+            <Typography component="p" variant="h4">
+                {balance.toFixed(2)} {/* Display the balance with two decimal places */}
             </Typography>
             <div>
-                <Link color="primary" href="#" onClick={preventDefault}>
-                    View balance
-                </Link>
+                <Button variant="contained" color="primary" onClick={handleIncreaseClick}>Increase</Button>
+                <Button variant="contained" color="secondary" onClick={handleDecreaseClick}>Decrease</Button>
             </div>
         </React.Fragment>
     );

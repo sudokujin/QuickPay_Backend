@@ -45,8 +45,8 @@ public class JdbcTransactionDao implements TransactionDao {
     @Override
     public List<Transaction> listTransactionsPending(Integer accountId) {
         List<Transaction> transactions = new ArrayList<>();
-        String sql = "SELECT * FROM transactions WHERE (acting_id = ? OR target_id = ?) AND status = 'Pending';";
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId, accountId);
+        String sql = "SELECT * FROM transactions WHERE target_id = ? AND status = 'Pending' AND type_id = 2;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, accountId);
         while(result.next()) {
             transactions.add(mapRowToTransaction(result));
         }

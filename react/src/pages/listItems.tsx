@@ -14,7 +14,7 @@ export const mainListItems = (
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText primary="Logout" />
     </ListItemButton>
     <ListItemButton component={RouterLink} to="/main">
       <ListItemIcon>
