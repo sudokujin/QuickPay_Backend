@@ -48,4 +48,5 @@ public class FriendRequestController {
     public List<FriendRequest> getAllFriendRequests(@PathVariable Integer accountId) {
         return friendRequestDao.getAllFriendRequests(accountId);
     }
+    // TODO: Add a method to get all friend requests for a specific user
 }
